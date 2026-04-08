@@ -2,275 +2,498 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mahyar Baghdadi — Support Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Opofinance — Support Dashboard</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; color: #1a1a2e; height: 100vh; overflow: hidden; }
-
-    #login-screen { display: flex; align-items: center; justify-content: center; height: 100vh; background: #f4f5f7; }
-    .login-card { background: #fff; border: 1px solid #e2e4e9; border-radius: 14px; padding: 2.25rem 2rem; width: 380px; box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
-    .login-logo { font-size: 20px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
-    .login-logo span { color: #185FA5; }
-    .login-sub { font-size: 13px; color: #6b7280; margin-bottom: 1.75rem; }
-    .login-label { display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 5px; }
-    .login-input { width: 100%; padding: 9px 12px; font-size: 14px; border: 1px solid #d1d5db; border-radius: 8px; margin-bottom: 1rem; outline: none; background: #fff; color: #1a1a2e; }
-    .login-input:focus { border-color: #185FA5; }
-    .login-btn { width: 100%; padding: 10px; background: #185FA5; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 0.25rem; }
-    .login-btn:hover { background: #0C447C; }
-    .login-link { text-align: center; font-size: 13px; color: #6b7280; margin-top: 1rem; }
-    .login-link span { color: #185FA5; cursor: pointer; font-weight: 500; }
-    .signup-fields { display: none; }
-
-    #dashboard-screen { display: none; height: 100vh; flex-direction: row; }
-
-    .sidebar { width: 210px; background: #fff; border-right: 1px solid #e2e4e9; display: flex; flex-direction: column; padding: 1.25rem 0; flex-shrink: 0; }
-    .sidebar-logo { font-size: 16px; font-weight: 700; color: #1a1a2e; padding: 0 1.25rem 1.25rem; border-bottom: 1px solid #e2e4e9; margin-bottom: 0.75rem; }
-    .sidebar-logo span { color: #185FA5; }
-    .sidebar-section { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.75rem 1.25rem 0.35rem; }
-    .nav-item { padding: 0.55rem 1.25rem; font-size: 13.5px; color: #4b5563; cursor: pointer; display: flex; align-items: center; gap: 10px; border-left: 3px solid transparent; }
-    .nav-item:hover { background: #f4f5f7; color: #1a1a2e; }
-    .nav-item.active { background: #EBF4FF; color: #185FA5; font-weight: 600; border-left: 3px solid #185FA5; }
-    .nav-icon { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
-    .nav-item.active .nav-icon { opacity: 1; }
-    .sidebar-bottom { margin-top: auto; border-top: 1px solid #e2e4e9; padding-top: 0.75rem; }
-
-    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #f4f5f7; }
-    .header { background: #fff; border-bottom: 1px solid #e2e4e9; padding: 0.85rem 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-    .header-left { display: flex; flex-direction: column; }
-    .header-title { font-size: 15px; font-weight: 600; color: #1a1a2e; }
-    .header-date { font-size: 12px; color: #9ca3af; margin-top: 1px; }
-    .header-right { display: flex; align-items: center; gap: 12px; }
-    .header-badge { background: #FCEBEB; color: #A32D2D; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
-    .avatar { width: 34px; height: 34px; border-radius: 50%; background: #EBF4FF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #185FA5; flex-shrink: 0; }
-    .user-info { display: flex; flex-direction: column; align-items: flex-end; }
-    .user-name { font-size: 13px; font-weight: 500; color: #1a1a2e; }
-    .user-role { font-size: 11px; color: #9ca3af; }
-
-    .content { flex: 1; overflow-y: auto; padding: 1.5rem 1.75rem; }
-    .section-title { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
-
-    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 1.5rem; }
-    .metric-card { background: #fff; border: 1px solid #e2e4e9; border-radius: 12px; padding: 1.1rem 1.25rem; }
-    .metric-label { font-size: 12px; color: #6b7280; margin-bottom: 6px; }
-    .metric-value { font-size: 26px; font-weight: 700; color: #1a1a2e; line-height: 1; margin-bottom: 4px; }
-    .metric-sub { font-size: 11px; }
-    .metric-up { color: #3B6D11; }
-    .metric-down { color: #A32D2D; }
-    .metric-accent { border-top: 3px solid #185FA5; }
-    .metric-accent-green { border-top: 3px solid #639922; }
-    .metric-accent-amber { border-top: 3px solid #EF9F27; }
-    .metric-accent-red { border-top: 3px solid #E24B4A; }
-
-    .cards-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
-    .card { background: #fff; border: 1px solid #e2e4e9; border-radius: 12px; padding: 1.1rem 1.25rem; }
-    .card-header { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
-    .card-action { font-size: 12px; color: #185FA5; cursor: pointer; font-weight: 400; }
-
-    .ticket-item { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f4f3fb;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+ 
+    /* ── SCREENS ── */
+    .screen { display: none; min-height: 100vh; }
+    .screen.active { display: flex; }
+ 
+    /* ── LOGIN / SIGNUP ── */
+    #login-screen, #signup-screen {
+      background: linear-gradient(135deg, #534AB7 0%, #1D9E75 100%);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .login-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 40px rgba(83,74,183,0.18);
+    }
+    .login-logo {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: #534AB7;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: #fff; font-weight: 700; font-size: 20px;
+      letter-spacing: 1px;
+    }
+    .login-card h2 {
+      text-align: center; font-size: 22px; font-weight: 700;
+      color: #26215C; margin-bottom: 4px;
+    }
+    .login-card p.sub {
+      text-align: center; font-size: 13px; color: #888; margin-bottom: 2rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; font-weight: 500; }
+    .form-group input {
+      width: 100%; padding: 10px 14px; border-radius: 10px;
+      border: 1.5px solid #e0dff5;
+      background: #f9f8ff;
+      color: #1a1a2e; font-size: 14px;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { outline: none; border-color: #534AB7; background: #fff; }
+    .btn-primary {
+      width: 100%; padding: 11px; border-radius: 10px;
+      background: #534AB7; color: #fff; border: none; cursor: pointer;
+      font-size: 15px; font-weight: 600; margin-top: 0.75rem;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #3C3489; }
+    .switch-link { text-align: center; margin-top: 1.25rem; font-size: 13px; color: #888; }
+    .switch-link a { color: #534AB7; cursor: pointer; font-weight: 600; text-decoration: none; }
+    .switch-link a:hover { text-decoration: underline; }
+ 
+    /* ── DASHBOARD ── */
+    #dashboard-screen { display: none; flex-direction: row; min-height: 100vh; }
+    #dashboard-screen.active { display: flex; }
+ 
+    /* SIDEBAR */
+    .sidebar {
+      width: 220px; flex-shrink: 0;
+      background: #26215C;
+      display: flex; flex-direction: column;
+      min-height: 100vh;
+    }
+    .sidebar-brand {
+      padding: 1.5rem 1.5rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 0.75rem;
+    }
+    .sidebar-brand .brand-name { color: #fff; font-size: 16px; font-weight: 700; letter-spacing: 0.3px; }
+    .sidebar-brand .brand-sub { color: rgba(255,255,255,0.45); font-size: 11px; margin-top: 2px; }
+    .nav-section-label {
+      padding: 0.75rem 1.5rem 0.25rem;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+      color: rgba(255,255,255,0.3); text-transform: uppercase;
+    }
+    .nav-item {
+      padding: 10px 1.5rem; display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.6); font-size: 13.5px; cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .nav-item.active { background: rgba(255,255,255,0.1); color: #fff; border-left-color: #5DCAA5; }
+    .nav-icon { width: 18px; text-align: center; font-size: 15px; }
+    .sidebar-bottom {
+      margin-top: auto; padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-user { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .sidebar-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #534AB7; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+    }
+    .sidebar-user-name { color: #fff; font-size: 13px; font-weight: 600; }
+    .sidebar-user-role { color: rgba(255,255,255,0.45); font-size: 11px; }
+    .logout-btn {
+      width: 100%; padding: 8px; border-radius: 8px;
+      background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.12); cursor: pointer; font-size: 13px;
+      transition: all 0.15s;
+    }
+    .logout-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+ 
+    /* MAIN AREA */
+    .main { flex: 1; display: flex; flex-direction: column; background: #f4f3fb; overflow-x: hidden; }
+ 
+    /* TOPBAR */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #ece9f8;
+      padding: 1rem 1.75rem;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .topbar-greeting h3 { font-size: 16px; font-weight: 700; color: #26215C; }
+    .topbar-greeting p { font-size: 12px; color: #888; margin-top: 1px; }
+    .topbar-right { display: flex; align-items: center; gap: 14px; }
+    .notif-badge {
+      background: #F5C4B3; color: #712B13;
+      font-size: 12px; font-weight: 700;
+      padding: 3px 10px; border-radius: 99px;
+    }
+    .topbar-user { display: flex; align-items: center; gap: 10px; }
+    .topbar-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, #534AB7, #1D9E75);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+    }
+    .topbar-user-info { text-align: right; }
+    .topbar-user-info .name { font-size: 13px; font-weight: 600; color: #26215C; }
+    .topbar-user-info .role { font-size: 11px; color: #888; }
+ 
+    /* CONTENT */
+    .content { padding: 1.5rem 1.75rem; }
+ 
+    /* METRICS */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+    .metric-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.25rem;
+      border: 1px solid #ece9f8;
+      position: relative;
+      overflow: hidden;
+    }
+    .metric-accent-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    }
+    .metric-icon { font-size: 22px; margin-bottom: 10px; }
+    .metric-label { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 500; }
+    .metric-value { font-size: 26px; font-weight: 800; color: #26215C; line-height: 1; }
+    .metric-change { font-size: 11px; margin-top: 6px; font-weight: 600; }
+    .up { color: #1D9E75; } .down { color: #D85A30; }
+ 
+    /* WIDGETS ROW */
+    .widgets-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+    .widget-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid #ece9f8;
+    }
+    .widget-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .widget-title { font-size: 14px; font-weight: 700; color: #26215C; }
+    .widget-badge {
+      font-size: 11px; padding: 2px 9px; border-radius: 99px;
+      background: #EEEDFE; color: #534AB7; font-weight: 600;
+    }
+ 
+    /* TICKETS TABLE */
+    .ticket-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0eef9;
+    }
     .ticket-item:last-child { border-bottom: none; }
-    .badge { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 600; flex-shrink: 0; }
-    .badge-open     { background: #EBF4FF; color: #185FA5; }
-    .badge-urgent   { background: #FCEBEB; color: #A32D2D; }
-    .badge-resolved { background: #EAF3DE; color: #3B6D11; }
-    .badge-pending  { background: #FAEEDA; color: #854F0B; }
-    .ticket-text { flex: 1; color: #374151; }
-    .ticket-time { color: #9ca3af; font-size: 11px; flex-shrink: 0; }
-
-    .status-row { display: flex; flex-direction: column; gap: 12px; }
-    .status-item { display: flex; justify-content: space-between; align-items: center; font-size: 13px; gap: 8px; }
-    .status-label { color: #6b7280; min-width: 60px; }
-    .status-bar-wrap { flex: 1; height: 7px; background: #f3f4f6; border-radius: 4px; }
-    .status-bar { height: 7px; border-radius: 4px; }
-    .status-val { color: #1a1a2e; font-weight: 600; min-width: 24px; text-align: right; font-size: 13px; }
-
-    .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .perf-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
-    .perf-item:last-child { border-bottom: none; }
-    .perf-label { color: #6b7280; }
-    .perf-value { font-weight: 600; color: #1a1a2e; }
-    .perf-good { color: #3B6D11; }
-    .perf-warn { color: #854F0B; }
-
-    .activity-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; align-items: flex-start; }
-    .activity-item:last-child { border-bottom: none; }
-    .activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
-    .activity-text { color: #374151; flex: 1; }
-    .activity-time { color: #9ca3af; font-size: 11px; }
+    .ticket-id { font-size: 11px; color: #aaa; width: 56px; flex-shrink: 0; font-family: monospace; }
+    .ticket-desc { font-size: 13px; color: #333; flex: 1; }
+    .ticket-status {
+      font-size: 10px; padding: 3px 8px; border-radius: 99px;
+      font-weight: 700; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.4px;
+    }
+    .s-open { background: #B5D4F4; color: #0C447C; }
+    .s-urgent { background: #F5C4B3; color: #712B13; }
+    .s-resolved { background: #C0DD97; color: #3B6D11; }
+    .s-pending { background: #FAC775; color: #633806; }
+ 
+    /* RIGHT COLUMN */
+    .right-col { display: flex; flex-direction: column; gap: 14px; }
+ 
+    /* PERFORMANCE */
+    .stat-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid #f0eef9;
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-label { font-size: 13px; color: #888; }
+    .stat-val { font-size: 13px; font-weight: 700; color: #26215C; }
+    .stat-val.bad { color: #D85A30; }
+ 
+    /* CATEGORY BARS */
+    .bar-group { margin-bottom: 12px; }
+    .bar-group:last-child { margin-bottom: 0; }
+    .bar-meta { display: flex; justify-content: space-between; font-size: 12px; color: #666; margin-bottom: 5px; }
+    .bar-track { height: 8px; background: #f0eef9; border-radius: 4px; }
+    .bar-fill { height: 100%; border-radius: 4px; }
+ 
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .widgets-row { grid-template-columns: 1fr; }
+      .sidebar { width: 60px; }
+      .sidebar-brand .brand-name,
+      .sidebar-brand .brand-sub,
+      .nav-section-label,
+      .nav-item span:not(.nav-icon),
+      .sidebar-user-name, .sidebar-user-role { display: none; }
+      .nav-item { justify-content: center; padding: 12px; }
+      .sidebar-user { justify-content: center; }
+      .sidebar-bottom .logout-btn { display: none; }
+    }
   </style>
 </head>
 <body>
-
+ 
 <!-- LOGIN -->
-<div id="login-screen">
+<div id="login-screen" class="screen active">
   <div class="login-card">
-    <div class="login-logo">Opo<span>finance</span></div>
-    <div class="login-sub">Support Portal — Sign in to continue</div>
-    <div id="login-fields">
-      <label class="login-label">Email</label>
-      <input class="login-input" type="email" placeholder="you@opofinance.com" />
-      <label class="login-label">Password</label>
-      <input class="login-input" type="password" placeholder="••••••••" />
-      <button class="login-btn" onclick="doLogin()">Sign in</button>
-      <div class="login-link">No account? <span onclick="toggleSignup()">Sign up</span></div>
+    <div class="login-logo">OP</div>
+    <h2>Opofinance</h2>
+    <p class="sub">Support Portal — sign in to continue</p>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" value="mahyar@opofinance.com" placeholder="mahyar@opofinance.com" />
     </div>
-    <div class="signup-fields" id="signup-fields">
-      <label class="login-label">Full name</label>
-      <input class="login-input" type="text" placeholder="Your name" />
-      <label class="login-label">Email</label>
-      <input class="login-input" type="email" placeholder="you@opofinance.com" />
-      <label class="login-label">Password</label>
-      <input class="login-input" type="password" placeholder="••••••••" />
-      <button class="login-btn" onclick="doLogin()">Create account</button>
-      <div class="login-link">Already have an account? <span onclick="toggleSignup()">Sign in</span></div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" value="password" placeholder="••••••••" />
     </div>
+    <button class="btn-primary" onclick="showDashboard()">Sign in</button>
+    <div class="switch-link">New here? <a onclick="showSignup()">Create an account</a></div>
   </div>
 </div>
-
+ 
+<!-- SIGN UP -->
+<div id="signup-screen" class="screen">
+  <div class="login-card">
+    <div class="login-logo">OP</div>
+    <h2>Create account</h2>
+    <p class="sub">Join the Opofinance support team</p>
+    <div class="form-group">
+      <label>Full name</label>
+      <input type="text" placeholder="Mahyar Baghdadi" />
+    </div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" placeholder="mahyar@opofinance.com" />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" placeholder="Create a password" />
+    </div>
+    <button class="btn-primary" onclick="showDashboard()">Register</button>
+    <div class="switch-link">Already have an account? <a onclick="showLogin()">Sign in</a></div>
+  </div>
+</div>
+ 
 <!-- DASHBOARD -->
-<div id="dashboard-screen">
+<div id="dashboard-screen" class="screen">
+ 
   <div class="sidebar">
-    <div class="sidebar-logo">Opo<span>finance</span></div>
-    <div class="sidebar-section">Support</div>
-    <div class="nav-item active">
-      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
-      Overview
+    <div class="sidebar-brand">
+      <div class="brand-name">Opofinance</div>
+      <div class="brand-sub">Support Portal</div>
     </div>
-    <div class="nav-item">
-      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V3zm2 1v6h8V4H4zm0 2h8v1H4V6zm0 2h5v1H4V8z"/></svg>
-      My Tickets
-    </div>
-    <div class="nav-item">
-      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M14 2H2a1 1 0 00-1 1v8a1 1 0 001 1h2v2l3-2h7a1 1 0 001-1V3a1 1 0 00-1-1zm-1 8H5.5L4 11.5V10H3V4h10v6z"/></svg>
-      Live Chat
-    </div>
-    <div class="nav-item">
-      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2a5 5 0 110 10A5 5 0 018 3zm-.5 2v4l3 1.5.5-.9-2.5-1.3V5h-1z"/></svg>
-      Escalations
-    </div>
-    <div class="sidebar-section">Clients</div>
-    <div class="nav-item">
-      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="6" cy="5" r="2.5"/><path d="M1 13c0-2.76 2.24-5 5-5s5 2.24 5 5H1z"/><circle cx="12" cy="5" r="2"/><path d="M10 13c0-1.1.3-2.1.8-3H15c0 1.66-1.34 3-3 3h-2z"/></svg>
-      Clients
-    </div>
-    <div class="nav-item">
-      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h12v2H2V2zm0 4h12v2H2V6zm0 4h8v2H2v-2z"/></svg>
-      Reports
-    </div>
+ 
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item active"><span class="nav-icon">◈</span><span>Overview</span></div>
+    <div class="nav-item"><span class="nav-icon">🎫</span><span>My Tickets</span></div>
+    <div class="nav-item"><span class="nav-icon">👤</span><span>Client Accounts</span></div>
+    <div class="nav-item"><span class="nav-icon">⚠️</span><span>Escalations</span></div>
+ 
+    <div class="nav-section-label">Tools</div>
+    <div class="nav-item"><span class="nav-icon">💬</span><span>Live Chat</span></div>
+    <div class="nav-item"><span class="nav-icon">📊</span><span>Reports</span></div>
+    <div class="nav-item"><span class="nav-icon">⚙️</span><span>Settings</span></div>
+ 
     <div class="sidebar-bottom">
-      <div class="nav-item" onclick="doLogout()">
-        <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3v-1.5H3.5v-9H6V2zm4 3l-1 1 1.5 1.5H6v1.5h4.5L9 10.5l1 1 3-3-3-3z"/></svg>
-        Sign out
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">MB</div>
+        <div>
+          <div class="sidebar-user-name">Mahyar Baghdadi</div>
+          <div class="sidebar-user-role">Support Agent</div>
+        </div>
       </div>
+      <button class="logout-btn" onclick="showLogin()">Sign out</button>
     </div>
   </div>
-
+ 
   <div class="main">
-    <div class="header">
-      <div class="header-left">
-        <div class="header-title">Support Dashboard</div>
-        <div class="header-date" id="header-date"></div>
+    <div class="topbar">
+      <div class="topbar-greeting">
+        <h3>Good morning, Mahyar 👋</h3>
+        <p>Wednesday, April 8 2026 — Support Agent, Opofinance</p>
       </div>
-      <div class="header-right">
-        <div class="header-badge">2 Escalations</div>
-        <div class="user-info">
-          <div class="user-name">Mahyar</div>
-          <div class="user-role">Chat Support</div>
+      <div class="topbar-right">
+        <span class="notif-badge">4 urgent</span>
+        <div class="topbar-user">
+          <div class="topbar-user-info">
+            <div class="name">Mahyar Baghdadi</div>
+            <div class="role">Support Agent</div>
+          </div>
+          <div class="topbar-avatar">MB</div>
         </div>
-        <div class="avatar">MA</div>
       </div>
     </div>
-
+ 
     <div class="content">
-      <div class="section-title">Today's overview</div>
+ 
+      <!-- METRICS -->
       <div class="metrics-grid">
-        <div class="metric-card metric-accent">
+        <div class="metric-card">
+          <div class="metric-accent-bar" style="background:#534AB7;"></div>
+          <div class="metric-icon">🎫</div>
           <div class="metric-label">Open tickets</div>
           <div class="metric-value">24</div>
-          <div class="metric-sub metric-down">+3 since yesterday</div>
+          <div class="metric-change up">↑ 3 since yesterday</div>
         </div>
-        <div class="metric-card metric-accent-green">
+        <div class="metric-card">
+          <div class="metric-accent-bar" style="background:#1D9E75;"></div>
+          <div class="metric-icon">✅</div>
           <div class="metric-label">Resolved today</div>
-          <div class="metric-value">17</div>
-          <div class="metric-sub metric-up">+5 above average</div>
+          <div class="metric-value">11</div>
+          <div class="metric-change up">↑ 2 above average</div>
         </div>
-        <div class="metric-card metric-accent-amber">
+        <div class="metric-card">
+          <div class="metric-accent-bar" style="background:#D85A30;"></div>
+          <div class="metric-icon">⏱</div>
           <div class="metric-label">Avg response time</div>
-          <div class="metric-value">4.2<span style="font-size:14px;">m</span></div>
-          <div class="metric-sub metric-up">Below 5m target</div>
+          <div class="metric-value">8m</div>
+          <div class="metric-change down">↑ 1m over target</div>
         </div>
-        <div class="metric-card metric-accent-red">
-          <div class="metric-label">Escalations</div>
-          <div class="metric-value">2</div>
-          <div class="metric-sub metric-down">+1 vs yesterday</div>
+        <div class="metric-card">
+          <div class="metric-accent-bar" style="background:#BA7517;"></div>
+          <div class="metric-icon">⭐</div>
+          <div class="metric-label">CSAT score</div>
+          <div class="metric-value">94%</div>
+          <div class="metric-change up">↑ 2% this week</div>
         </div>
       </div>
-
-      <div class="cards-row">
-        <div class="card">
-          <div class="card-header">Recent tickets <span class="card-action">View all</span></div>
-          <div class="ticket-item"><span class="badge badge-urgent">Urgent</span><span class="ticket-text">Withdrawal not processed — Client #4821</span><span class="ticket-time">2m ago</span></div>
-          <div class="ticket-item"><span class="badge badge-open">Open</span><span class="ticket-text">Login issue — 2FA not working</span><span class="ticket-time">14m ago</span></div>
-          <div class="ticket-item"><span class="badge badge-pending">Pending</span><span class="ticket-text">KYC document re-upload request</span><span class="ticket-time">31m ago</span></div>
-          <div class="ticket-item"><span class="badge badge-resolved">Resolved</span><span class="ticket-text">MT4 platform connection error</span><span class="ticket-time">1h ago</span></div>
-          <div class="ticket-item"><span class="badge badge-open">Open</span><span class="ticket-text">Deposit not reflected in account</span><span class="ticket-time">2h ago</span></div>
-        </div>
-        <div class="card">
-          <div class="card-header">Ticket breakdown</div>
-          <div class="status-row">
-            <div class="status-item"><span class="status-label">Open</span><div class="status-bar-wrap"><div class="status-bar" style="width:58%;background:#378ADD;"></div></div><span class="status-val">14</span></div>
-            <div class="status-item"><span class="status-label">Pending</span><div class="status-bar-wrap"><div class="status-bar" style="width:25%;background:#EF9F27;"></div></div><span class="status-val">6</span></div>
-            <div class="status-item"><span class="status-label">Urgent</span><div class="status-bar-wrap"><div class="status-bar" style="width:8%;background:#E24B4A;"></div></div><span class="status-val">2</span></div>
-            <div class="status-item"><span class="status-label">Resolved</span><div class="status-bar-wrap"><div class="status-bar" style="width:100%;background:#639922;"></div></div><span class="status-val">17</span></div>
+ 
+      <!-- WIDGETS -->
+      <div class="widgets-row">
+ 
+        <!-- TICKETS -->
+        <div class="widget-card">
+          <div class="widget-header">
+            <span class="widget-title">Recent tickets</span>
+            <span class="widget-badge">24 open</span>
+          </div>
+          <div class="ticket-item">
+            <span class="ticket-id">#T-4821</span>
+            <span class="ticket-desc">Withdrawal not processed — client ID 20847</span>
+            <span class="ticket-status s-urgent">Urgent</span>
+          </div>
+          <div class="ticket-item">
+            <span class="ticket-id">#T-4820</span>
+            <span class="ticket-desc">Login issue after password reset</span>
+            <span class="ticket-status s-open">Open</span>
+          </div>
+          <div class="ticket-item">
+            <span class="ticket-id">#T-4818</span>
+            <span class="ticket-desc">KYC documents rejected — appeal request</span>
+            <span class="ticket-status s-pending">Pending</span>
+          </div>
+          <div class="ticket-item">
+            <span class="ticket-id">#T-4815</span>
+            <span class="ticket-desc">MT5 platform connection error</span>
+            <span class="ticket-status s-urgent">Urgent</span>
+          </div>
+          <div class="ticket-item">
+            <span class="ticket-id">#T-4812</span>
+            <span class="ticket-desc">Deposit not reflected in account balance</span>
+            <span class="ticket-status s-resolved">Resolved</span>
+          </div>
+          <div class="ticket-item">
+            <span class="ticket-id">#T-4810</span>
+            <span class="ticket-desc">Leverage change request for live account</span>
+            <span class="ticket-status s-open">Open</span>
           </div>
         </div>
-      </div>
-
-      <div class="bottom-row">
-        <div class="card">
-          <div class="card-header">My performance</div>
-          <div class="perf-item"><span class="perf-label">CSAT score</span><span class="perf-value perf-good">94%</span></div>
-          <div class="perf-item"><span class="perf-label">First response</span><span class="perf-value perf-good">3.8m avg</span></div>
-          <div class="perf-item"><span class="perf-label">Tickets handled</span><span class="perf-value">17 today</span></div>
-          <div class="perf-item"><span class="perf-label">Escalation rate</span><span class="perf-value perf-warn">11.7%</span></div>
-          <div class="perf-item"><span class="perf-label">Resolution rate</span><span class="perf-value perf-good">88.3%</span></div>
-        </div>
-        <div class="card">
-          <div class="card-header">Recent activity</div>
-          <div class="activity-item"><div class="activity-dot" style="background:#639922;"></div><span class="activity-text">Resolved: MT4 connection error for #3901</span><span class="activity-time">1h ago</span></div>
-          <div class="activity-item"><div class="activity-dot" style="background:#378ADD;"></div><span class="activity-text">Opened new ticket: deposit issue #5102</span><span class="activity-time">2h ago</span></div>
-          <div class="activity-item"><div class="activity-dot" style="background:#EF9F27;"></div><span class="activity-text">Escalated KYC case #4788 to compliance</span><span class="activity-time">3h ago</span></div>
-          <div class="activity-item"><div class="activity-dot" style="background:#639922;"></div><span class="activity-text">Resolved: password reset for client #4210</span><span class="activity-time">4h ago</span></div>
-          <div class="activity-item"><div class="activity-dot" style="background:#378ADD;"></div><span class="activity-text">Responded to live chat — withdrawal query</span><span class="activity-time">5h ago</span></div>
+ 
+        <!-- RIGHT COLUMN -->
+        <div class="right-col">
+ 
+          <!-- PERFORMANCE -->
+          <div class="widget-card">
+            <div class="widget-header">
+              <span class="widget-title">My performance</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Tickets this week</span>
+              <span class="stat-val">47</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Escalations raised</span>
+              <span class="stat-val">3</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">First contact resolution</span>
+              <span class="stat-val">78%</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">SLA breaches</span>
+              <span class="stat-val bad">2</span>
+            </div>
+          </div>
+ 
+          <!-- CATEGORIES -->
+          <div class="widget-card">
+            <div class="widget-header">
+              <span class="widget-title">Ticket categories</span>
+            </div>
+            <div class="bar-group">
+              <div class="bar-meta"><span>Withdrawals</span><span>35%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:35%;background:#534AB7;"></div></div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-meta"><span>Account access</span><span>28%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:28%;background:#1D9E75;"></div></div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-meta"><span>KYC / documents</span><span>22%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:22%;background:#BA7517;"></div></div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-meta"><span>Platform issues</span><span>15%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:15%;background:#D85A30;"></div></div>
+            </div>
+          </div>
+ 
         </div>
       </div>
     </div>
   </div>
 </div>
-
+ 
 <script>
-  function toggleSignup() {
-    var lf = document.getElementById('login-fields');
-    var sf = document.getElementById('signup-fields');
-    if (lf.style.display === 'none') { lf.style.display = 'block'; sf.style.display = 'none'; }
-    else { lf.style.display = 'none'; sf.style.display = 'block'; }
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
   }
-
-  function doLogin() {
-    var now = new Date();
-    document.getElementById('header-date').textContent = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('dashboard-screen').style.display = 'flex';
-  }
-
-  function doLogout() {
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('dashboard-screen').style.display = 'none';
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') doLogin();
+  function showDashboard() { showScreen('dashboard-screen'); }
+  function showLogin() { showScreen('login-screen'); }
+  function showSignup() { showScreen('signup-screen'); }
+ 
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function() {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      this.classList.add('active');
+    });
   });
 </script>
+ 
 </body>
 </html>
