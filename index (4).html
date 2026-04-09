@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Opofinance — Mahyar Baghdadi</title>
+
+  <!-- Google Fonts: Outfit (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Chart.js for animated charts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css"/>
+  <link rel="stylesheet" href="css/base.css"/>
+  <link rel="stylesheet" href="css/auth.css"/>
+  <link rel="stylesheet" href="css/layout.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+  <link rel="stylesheet" href="css/dark.css"/>
+  <link rel="stylesheet" href="css/rtl.css"/>
+</head>
+<body class="theme-light lang-en">
+
+  <!-- ═══════════════════════════════════════
+       AUTH SCREENS
+  ═══════════════════════════════════════ -->
+
+  <!-- LOGIN -->
+  <div id="screen-login" class="screen active">
+    <div class="auth-bg">
+      <div class="auth-orb auth-orb-1"></div>
+      <div class="auth-orb auth-orb-2"></div>
+      <div class="auth-orb auth-orb-3"></div>
+    </div>
+    <div class="auth-card animate-in">
+      <div class="auth-logo">
+        <div class="logo-mark">OP</div>
+        <div class="logo-text">
+          <span class="logo-name">Opofinance</span>
+          <span class="logo-sub" data-en="Support Portal" data-fa="پورتال پشتیبانی">Support Portal</span>
+        </div>
+      </div>
+      <h2 data-en="Welcome back" data-fa="خوش آمدید">Welcome back</h2>
+      <p class="auth-sub" data-en="Sign in to your support dashboard" data-fa="وارد داشبورد پشتیبانی شوید">Sign in to your support dashboard</p>
+
+      <div class="form-group">
+        <label for="login-email" data-en="Email address" data-fa="آدرس ایمیل">Email address</label>
+        <div class="input-wrap">
+          <span class="input-icon">✉</span>
+          <input type="email" id="login-email" value="mahyar@opofinance.com" placeholder="mahyar@opofinance.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="login-password" data-en="Password" data-fa="رمز عبور">Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="login-password" value="password" placeholder="••••••••"/>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="login-btn">
+        <span data-en="Sign In" data-fa="ورود">Sign In</span>
+        <span class="btn-arrow">→</span>
+      </button>
+      <div class="auth-switch">
+        <span data-en="Don't have an account?" data-fa="حساب کاربری ندارید؟">Don't have an account?</span>
+        <a id="go-signup" data-en="Sign up" data-fa="ثبت‌نام">Sign up</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGN UP -->
+  <div id="screen-signup" class="screen">
+    <div class="auth-bg">
+      <div class="auth-orb auth-orb-1"></div>
+      <div class="auth-orb auth-orb-2"></div>
+      <div class="auth-orb auth-orb-3"></div>
+    </div>
+    <div class="auth-card animate-in">
+      <div class="auth-logo">
+        <div class="logo-mark">OP</div>
+        <div class="logo-text">
+          <span class="logo-name">Opofinance</span>
+          <span class="logo-sub" data-en="Support Portal" data-fa="پورتال پشتیبانی">Support Portal</span>
+        </div>
+      </div>
+      <h2 data-en="Create Account" data-fa="ایجاد حساب">Create Account</h2>
+      <p class="auth-sub" data-en="Join the support team portal" data-fa="به پورتال تیم پشتیبانی بپیوندید">Join the support team portal</p>
+
+      <div class="form-group">
+        <label for="signup-name" data-en="Full name" data-fa="نام کامل">Full name</label>
+        <div class="input-wrap">
+          <span class="input-icon">👤</span>
+          <input type="text" id="signup-name" placeholder="Mahyar Baghdadi"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signup-email" data-en="Email address" data-fa="آدرس ایمیل">Email address</label>
+        <div class="input-wrap">
+          <span class="input-icon">✉</span>
+          <input type="email" id="signup-email" placeholder="mahyar@opofinance.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signup-password" data-en="Password" data-fa="رمز عبور">Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="signup-password" placeholder="Create a password"/>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="signup-btn">
+        <span data-en="Create Account" data-fa="ایجاد حساب">Create Account</span>
+        <span class="btn-arrow">→</span>
+      </button>
+      <div class="auth-switch">
+        <span data-en="Already have an account?" data-fa="قبلاً حساب دارید؟">Already have an account?</span>
+        <a id="go-login" data-en="Sign in" data-fa="ورود">Sign in</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       DASHBOARD
+  ═══════════════════════════════════════ -->
+  <div id="screen-dashboard" class="screen">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button class="logo-btn" id="logo-btn" aria-label="Go to dashboard">
+          <div class="logo-mark">OP</div>
+          <div class="sidebar-brand-text">
+            <span class="logo-name">Opofinance</span>
+            <span class="logo-sub" data-en="Support Portal" data-fa="پورتال پشتیبانی">Support Portal</span>
+          </div>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label" data-en="Main" data-fa="اصلی">Main</div>
+        <button class="nav-item active" data-page="page-dashboard">
+          <span class="nav-icon">◈</span>
+          <span class="nav-label" data-en="Dashboard" data-fa="داشبورد">Dashboard</span>
+        </button>
+        <button class="nav-item" data-page="page-chats">
+          <span class="nav-icon">💬</span>
+          <span class="nav-label" data-en="Live Chats" data-fa="چت زنده">Live Chats</span>
+          <span class="nav-badge">3</span>
+        </button>
+        <button class="nav-item" data-page="page-tickets">
+          <span class="nav-icon">🎫</span>
+          <span class="nav-label" data-en="Tickets" data-fa="تیکت‌ها">Tickets</span>
+          <span class="nav-badge">24</span>
+        </button>
+        <button class="nav-item" data-page="page-clients">
+          <span class="nav-icon">👥</span>
+          <span class="nav-label" data-en="Clients" data-fa="مشتریان">Clients</span>
+          <span class="nav-badge">138</span>
+        </button>
+
+        <div class="nav-section-label" data-en="Tools" data-fa="ابزارها">Tools</div>
+        <button class="nav-item" data-page="page-escalations">
+          <span class="nav-icon">🚨</span>
+          <span class="nav-label" data-en="Escalations" data-fa="ارجاعات">Escalations</span>
+          <span class="nav-badge urgent">4</span>
+        </button>
+        <button class="nav-item" data-page="page-performance">
+          <span class="nav-icon">📈</span>
+          <span class="nav-label" data-en="Performance" data-fa="عملکرد">Performance</span>
+        </button>
+        <button class="nav-item" data-page="page-knowledge">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-label" data-en="Knowledge Base" data-fa="پایگاه دانش">Knowledge Base</span>
+          <span class="nav-badge">84</span>
+        </button>
+        <button class="nav-item" data-page="page-profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label" data-en="My Profile" data-fa="پروفایل من">My Profile</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="s-avatar">MB</div>
+          <div class="s-info">
+            <div class="s-name">Mahyar Baghdadi</div>
+            <div class="s-role" data-en="Support Agent" data-fa="کارشناس پشتیبانی">Support Agent</div>
+          </div>
+        </div>
+        <button class="logout-btn" id="logout-btn">
+          <span class="logout-icon">⏏</span>
+          <span data-en="Sign Out" data-fa="خروج">Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-wrap">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+        <div class="topbar-center" id="topbar-title">
+          <h3 class="page-title-text">Dashboard</h3>
+        </div>
+        <div class="topbar-actions">
+          <!-- Notification badge -->
+          <div class="notif-pill">
+            <span class="notif-dot"></span>
+            <span data-en="4 urgent" data-fa="۴ فوری">4 urgent</span>
+          </div>
+
+          <!-- Language toggle -->
+          <button class="ctrl-btn" id="lang-toggle" aria-label="Toggle language">
+            <span id="lang-label">FA</span>
+          </button>
+
+          <!-- Theme toggle -->
+          <button class="ctrl-btn" id="theme-toggle" aria-label="Toggle theme">
+            <span id="theme-icon">🌙</span>
+          </button>
+
+          <!-- Avatar → profile -->
+          <button class="avatar-btn" id="avatar-btn" aria-label="Go to profile">
+            <div class="topbar-avatar">MB</div>
+            <div class="avatar-info">
+              <span class="av-name">Mahyar Baghdadi</span>
+              <span class="av-role" data-en="Support Agent" data-fa="کارشناس پشتیبانی">Support Agent</span>
+            </div>
+          </button>
+        </div>
+      </header>
+
+      <!-- PAGES -->
+      <main class="pages-wrap">
+
+        <!-- ── DASHBOARD ── -->
+        <section id="page-dashboard" class="page active">
+          <div class="page-header">
+            <div>
+              <h2 class="page-h2">
+                <span data-en="Good morning, Mahyar" data-fa="صبح بخیر، مهیار">Good morning, Mahyar</span>
+                <span class="wave" aria-hidden="true">👋</span>
+              </h2>
+              <p class="page-sub" data-en="Here's your support overview for today" data-fa="این خلاصه پشتیبانی امروز شماست">Here's your support overview for today</p>
+            </div>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-card" style="--accent:#6C63FF;">
+              <div class="metric-accent"></div>
+              <div class="metric-icon">🎫</div>
+              <div class="metric-label" data-en="Open Tickets" data-fa="تیکت‌های باز">Open Tickets</div>
+              <div class="metric-value" data-count="24">0</div>
+              <div class="metric-change up" data-en="+4 since yesterday" data-fa="+۴ از دیروز">+4 since yesterday</div>
+            </div>
+            <div class="metric-card" style="--accent:#10B981;">
+              <div class="metric-accent"></div>
+              <div class="metric-icon">✅</div>
+              <div class="metric-label" data-en="Resolved Today" data-fa="حل‌شده امروز">Resolved Today</div>
+              <div class="metric-value" data-count="11">0</div>
+              <div class="metric-change up" data-en="On track ✓" data-fa="در مسیر ✓">On track ✓</div>
+            </div>
+            <div class="metric-card" style="--accent:#F59E0B;">
+              <div class="metric-accent"></div>
+              <div class="metric-icon">⏱</div>
+              <div class="metric-label" data-en="Avg Response" data-fa="میانگین پاسخ">Avg Response</div>
+              <div class="metric-value" data-count="8" data-suffix="m">0</div>
+              <div class="metric-change down" data-en="Target: 5m" data-fa="هدف: ۵ دقیقه">Target: 5m</div>
+            </div>
+            <div class="metric-card" style="--accent:#8B5CF6;">
+              <div class="metric-accent"></div>
+              <div class="metric-icon">⭐</div>
+              <div class="metric-label" data-en="CSAT Score" data-fa="امتیاز رضایت">CSAT Score</div>
+              <div class="metric-value" data-count="94" data-suffix="%">0</div>
+              <div class="metric-change up" data-en="Excellent 🌟" data-fa="عالی 🌟">Excellent 🌟</div>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title" data-en="Recent Tickets" data-fa="تیکت‌های اخیر">Recent Tickets</span>
+                <span class="card-badge" data-en="Last 24hrs" data-fa="۲۴ ساعت گذشته">Last 24hrs</span>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th data-en="Ticket" data-fa="تیکت">Ticket</th>
+                    <th data-en="Client" data-fa="مشتری">Client</th>
+                    <th data-en="Issue" data-fa="مشکل">Issue</th>
+                    <th data-en="Priority" data-fa="اولویت">Priority</th>
+                    <th data-en="Status" data-fa="وضعیت">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>#5821</td><td>Sarah M.</td><td data-en="Withdrawal delay" data-fa="تاخیر برداشت">Withdrawal delay</td><td><span class="badge b-high" data-en="High" data-fa="بالا">High</span></td><td><span class="badge b-open" data-en="Open" data-fa="باز">Open</span></td></tr>
+                  <tr><td>#5820</td><td>James K.</td><td data-en="Verification docs" data-fa="مدارک تایید">Verification docs</td><td><span class="badge b-med" data-en="Medium" data-fa="متوسط">Medium</span></td><td><span class="badge b-prog" data-en="In Progress" data-fa="در جریان">In Progress</span></td></tr>
+                  <tr><td>#5819</td><td>Lena R.</td><td data-en="Login issue" data-fa="مشکل ورود">Login issue</td><td><span class="badge b-low" data-en="Low" data-fa="پایین">Low</span></td><td><span class="badge b-done" data-en="Resolved" data-fa="حل‌شده">Resolved</span></td></tr>
+                  <tr><td>#5817</td><td>Omar F.</td><td data-en="Deposit not credited" data-fa="واریز ثبت نشده">Deposit not credited</td><td><span class="badge b-high" data-en="High" data-fa="بالا">High</span></td><td><span class="badge b-open" data-en="Open" data-fa="باز">Open</span></td></tr>
+                  <tr><td>#5815</td><td>Priya N.</td><td data-en="Platform connection" data-fa="اتصال پلتفرم">Platform connection</td><td><span class="badge b-med" data-en="Medium" data-fa="متوسط">Medium</span></td><td><span class="badge b-done" data-en="Resolved" data-fa="حل‌شده">Resolved</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title" data-en="Today's Performance" data-fa="عملکرد امروز">Today's Performance</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar-meta"><span data-en="Tickets handled" data-fa="تیکت‌های رسیدگی‌شده">Tickets handled</span><span>11/20</span></div>
+                <div class="bar-track"><div class="bar-fill" style="--fill:55%;--color:#6C63FF;" data-width="55%"></div></div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-meta"><span data-en="First contact resolution" data-fa="حل در اولین تماس">First contact resolution</span><span>73%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="--fill:73%;--color:#10B981;" data-width="73%"></div></div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-meta"><span data-en="Client satisfaction" data-fa="رضایت مشتری">Client satisfaction</span><span>94%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="--fill:94%;--color:#8B5CF6;" data-width="94%"></div></div>
+              </div>
+              <div class="stat-row"><span class="stat-label" data-en="Escalations raised" data-fa="ارجاعات ایجادشده">Escalations raised</span><span class="stat-val bad">2</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Chats active now" data-fa="چت‌های فعال">Chats active now</span><span class="stat-val">3</span></div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="card chart-card">
+            <div class="card-header">
+              <span class="card-title" data-en="Weekly Ticket Volume" data-fa="حجم تیکت هفتگی">Weekly Ticket Volume</span>
+            </div>
+            <canvas id="chart-weekly" height="80"></canvas>
+          </div>
+        </section>
+
+        <!-- ── LIVE CHATS ── -->
+        <section id="page-chats" class="page">
+          <div class="page-header">
+            <h2 class="page-h2">💬 <span data-en="Live Chats" data-fa="چت زنده">Live Chats</span></h2>
+            <p class="page-sub" data-en="Currently active client conversations" data-fa="مکالمات فعال مشتریان">Currently active client conversations</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card" style="--accent:#6C63FF;"><div class="metric-accent"></div><div class="metric-icon">💬</div><div class="metric-label" data-en="Active Chats" data-fa="چت‌های فعال">Active Chats</div><div class="metric-value" data-count="3">0</div><div class="metric-change up" data-en="Right now" data-fa="همین الان">Right now</div></div>
+            <div class="metric-card" style="--accent:#10B981;"><div class="metric-accent"></div><div class="metric-icon">⏱</div><div class="metric-label" data-en="Avg Wait Time" data-fa="میانگین زمان انتظار">Avg Wait Time</div><div class="metric-value" data-count="1" data-suffix=".4m">0</div><div class="metric-change up" data-en="Excellent" data-fa="عالی">Excellent</div></div>
+            <div class="metric-card" style="--accent:#F59E0B;"><div class="metric-accent"></div><div class="metric-icon">📊</div><div class="metric-label" data-en="Chats Today" data-fa="چت‌های امروز">Chats Today</div><div class="metric-value" data-count="18">0</div><div class="metric-change up" data-en="+3 vs yesterday" data-fa="+۳ نسبت به دیروز">+3 vs yesterday</div></div>
+            <div class="metric-card" style="--accent:#8B5CF6;"><div class="metric-accent"></div><div class="metric-icon">✅</div><div class="metric-label" data-en="Resolved Chats" data-fa="چت‌های حل‌شده">Resolved Chats</div><div class="metric-value" data-count="15">0</div><div class="metric-change up" data-en="83% rate" data-fa="۸۳٪">83% rate</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title" data-en="Active Conversations" data-fa="مکالمات فعال">Active Conversations</span><span class="card-badge">3</span></div>
+            <table class="data-table">
+              <thead><tr><th data-en="Client" data-fa="مشتری">Client</th><th data-en="Topic" data-fa="موضوع">Topic</th><th data-en="Started" data-fa="شروع">Started</th><th data-en="Wait" data-fa="انتظار">Wait</th><th data-en="Status" data-fa="وضعیت">Status</th></tr></thead>
+              <tbody>
+                <tr><td>🟢 Ali Hassan</td><td data-en="Account verification" data-fa="تایید حساب">Account verification</td><td>10:32 AM</td><td>2m</td><td><span class="badge b-done" data-en="Active" data-fa="فعال">Active</span></td></tr>
+                <tr><td>🟡 Maria Lopez</td><td data-en="Deposit issue" data-fa="مشکل واریز">Deposit issue</td><td>10:45 AM</td><td>5m</td><td><span class="badge b-prog" data-en="Waiting" data-fa="در انتظار">Waiting</span></td></tr>
+                <tr><td>🟢 David Chen</td><td data-en="Password reset" data-fa="بازنشانی رمز">Password reset</td><td>11:01 AM</td><td>1m</td><td><span class="badge b-done" data-en="Active" data-fa="فعال">Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── TICKETS ── -->
+        <section id="page-tickets" class="page">
+          <div class="page-header">
+            <h2 class="page-h2">🎫 <span data-en="Tickets" data-fa="تیکت‌ها">Tickets</span></h2>
+            <p class="page-sub" data-en="All support tickets assigned to you" data-fa="همه تیکت‌های پشتیبانی شما">All support tickets assigned to you</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card" style="--accent:#6C63FF;"><div class="metric-accent"></div><div class="metric-icon">📋</div><div class="metric-label" data-en="Total Open" data-fa="مجموع باز">Total Open</div><div class="metric-value" data-count="24">0</div><div class="metric-change down" data-en="Needs attention" data-fa="نیاز به توجه">Needs attention</div></div>
+            <div class="metric-card" style="--accent:#EF4444;"><div class="metric-accent"></div><div class="metric-icon">🔴</div><div class="metric-label" data-en="High Priority" data-fa="اولویت بالا">High Priority</div><div class="metric-value" data-count="6">0</div><div class="metric-change down" data-en="Urgent" data-fa="فوری">Urgent</div></div>
+            <div class="metric-card" style="--accent:#10B981;"><div class="metric-accent"></div><div class="metric-icon">✅</div><div class="metric-label" data-en="Resolved This Week" data-fa="حل‌شده این هفته">Resolved This Week</div><div class="metric-value" data-count="42">0</div><div class="metric-change up" data-en="Great work!" data-fa="عالی!">Great work!</div></div>
+            <div class="metric-card" style="--accent:#F59E0B;"><div class="metric-accent"></div><div class="metric-icon">⏱</div><div class="metric-label" data-en="Avg Close Time" data-fa="میانگین زمان بسته‌شدن">Avg Close Time</div><div class="metric-value" data-count="4" data-suffix=".1h">0</div><div class="metric-change up" data-en="Target: 6h" data-fa="هدف: ۶ ساعت">Target: 6h</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title" data-en="All Tickets" data-fa="همه تیکت‌ها">All Tickets</span><span class="card-badge">24 open</span></div>
+            <table class="data-table">
+              <thead><tr><th data-en="Ticket" data-fa="تیکت">Ticket</th><th data-en="Client" data-fa="مشتری">Client</th><th data-en="Issue" data-fa="مشکل">Issue</th><th data-en="Created" data-fa="ایجادشده">Created</th><th data-en="Priority" data-fa="اولویت">Priority</th><th data-en="Status" data-fa="وضعیت">Status</th></tr></thead>
+              <tbody>
+                <tr><td>#5821</td><td>Sarah M.</td><td data-en="Withdrawal delay" data-fa="تاخیر برداشت">Withdrawal delay</td><td data-en="Today 9:10am" data-fa="امروز ۹:۱۰">Today 9:10am</td><td><span class="badge b-high" data-en="High" data-fa="بالا">High</span></td><td><span class="badge b-open" data-en="Open" data-fa="باز">Open</span></td></tr>
+                <tr><td>#5820</td><td>James K.</td><td data-en="Verification docs" data-fa="مدارک تایید">Verification docs</td><td data-en="Today 8:45am" data-fa="امروز ۸:۴۵">Today 8:45am</td><td><span class="badge b-med" data-en="Medium" data-fa="متوسط">Medium</span></td><td><span class="badge b-prog" data-en="In Progress" data-fa="در جریان">In Progress</span></td></tr>
+                <tr><td>#5819</td><td>Lena R.</td><td data-en="Login issue" data-fa="مشکل ورود">Login issue</td><td data-en="Yesterday" data-fa="دیروز">Yesterday</td><td><span class="badge b-low" data-en="Low" data-fa="پایین">Low</span></td><td><span class="badge b-done" data-en="Resolved" data-fa="حل‌شده">Resolved</span></td></tr>
+                <tr><td>#5817</td><td>Omar F.</td><td data-en="Deposit not credited" data-fa="واریز ثبت نشده">Deposit not credited</td><td data-en="Yesterday" data-fa="دیروز">Yesterday</td><td><span class="badge b-high" data-en="High" data-fa="بالا">High</span></td><td><span class="badge b-open" data-en="Open" data-fa="باز">Open</span></td></tr>
+                <tr><td>#5815</td><td>Priya N.</td><td data-en="Platform connection" data-fa="اتصال پلتفرم">Platform connection</td><td data-en="2 days ago" data-fa="۲ روز پیش">2 days ago</td><td><span class="badge b-med" data-en="Medium" data-fa="متوسط">Medium</span></td><td><span class="badge b-done" data-en="Resolved" data-fa="حل‌شده">Resolved</span></td></tr>
+                <tr><td>#5810</td><td>Tom W.</td><td data-en="Leverage change" data-fa="تغییر لوریج">Leverage change</td><td data-en="2 days ago" data-fa="۲ روز پیش">2 days ago</td><td><span class="badge b-low" data-en="Low" data-fa="پایین">Low</span></td><td><span class="badge b-prog" data-en="In Progress" data-fa="در جریان">In Progress</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── CLIENTS ── -->
+        <section id="page-clients" class="page">
+          <div class="page-header">
+            <h2 class="page-h2">👥 <span data-en="Clients" data-fa="مشتریان">Clients</span></h2>
+            <p class="page-sub" data-en="Client accounts you are supporting" data-fa="حساب‌های مشتریان شما">Client accounts you are supporting</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card" style="--accent:#6C63FF;"><div class="metric-accent"></div><div class="metric-icon">👥</div><div class="metric-label" data-en="Total Clients" data-fa="مجموع مشتریان">Total Clients</div><div class="metric-value" data-count="138">0</div><div class="metric-change up" data-en="Active" data-fa="فعال">Active</div></div>
+            <div class="metric-card" style="--accent:#10B981;"><div class="metric-accent"></div><div class="metric-icon">🆕</div><div class="metric-label" data-en="New This Month" data-fa="جدید این ماه">New This Month</div><div class="metric-value" data-count="12">0</div><div class="metric-change up" data-en="+8% growth" data-fa="+۸٪ رشد">+8% growth</div></div>
+            <div class="metric-card" style="--accent:#EF4444;"><div class="metric-accent"></div><div class="metric-icon">🔔</div><div class="metric-label" data-en="Need Follow-up" data-fa="نیاز به پیگیری">Need Follow-up</div><div class="metric-value" data-count="7">0</div><div class="metric-change down" data-en="Action needed" data-fa="نیاز به اقدام">Action needed</div></div>
+            <div class="metric-card" style="--accent:#F59E0B;"><div class="metric-accent"></div><div class="metric-icon">⭐</div><div class="metric-label" data-en="VIP Clients" data-fa="مشتریان ویژه">VIP Clients</div><div class="metric-value" data-count="19">0</div><div class="metric-change up" data-en="Priority tier" data-fa="سطح اولویت">Priority tier</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title" data-en="Client List" data-fa="لیست مشتریان">Client List</span></div>
+            <table class="data-table">
+              <thead><tr><th data-en="Name" data-fa="نام">Name</th><th data-en="Email" data-fa="ایمیل">Email</th><th data-en="Account Type" data-fa="نوع حساب">Account Type</th><th data-en="Last Contact" data-fa="آخرین تماس">Last Contact</th><th data-en="Status" data-fa="وضعیت">Status</th></tr></thead>
+              <tbody>
+                <tr><td>Sarah Mitchell</td><td>s.mitchell@email.com</td><td><span class="badge b-vip">VIP</span></td><td data-en="Today" data-fa="امروز">Today</td><td><span class="badge b-done" data-en="Active" data-fa="فعال">Active</span></td></tr>
+                <tr><td>James Kim</td><td>james.k@email.com</td><td><span class="badge b-low" data-en="Standard" data-fa="استاندارد">Standard</span></td><td data-en="Today" data-fa="امروز">Today</td><td><span class="badge b-prog" data-en="Follow-up" data-fa="پیگیری">Follow-up</span></td></tr>
+                <tr><td>Lena Rossi</td><td>lena.r@email.com</td><td><span class="badge b-low" data-en="Standard" data-fa="استاندارد">Standard</span></td><td data-en="Yesterday" data-fa="دیروز">Yesterday</td><td><span class="badge b-done" data-en="Resolved" data-fa="حل‌شده">Resolved</span></td></tr>
+                <tr><td>Omar Farooq</td><td>omar.f@email.com</td><td><span class="badge b-vip">VIP</span></td><td data-en="Yesterday" data-fa="دیروز">Yesterday</td><td><span class="badge b-done" data-en="Active" data-fa="فعال">Active</span></td></tr>
+                <tr><td>Priya Nair</td><td>priya.n@email.com</td><td><span class="badge b-low" data-en="Standard" data-fa="استاندارد">Standard</span></td><td data-en="2 days ago" data-fa="۲ روز پیش">2 days ago</td><td><span class="badge b-done" data-en="Resolved" data-fa="حل‌شده">Resolved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── ESCALATIONS ── -->
+        <section id="page-escalations" class="page">
+          <div class="page-header">
+            <h2 class="page-h2">🚨 <span data-en="Escalations" data-fa="ارجاعات">Escalations</span></h2>
+            <p class="page-sub" data-en="Issues escalated to senior support" data-fa="مشکلات ارجاع‌داده‌شده">Issues escalated to senior support</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card" style="--accent:#EF4444;"><div class="metric-accent"></div><div class="metric-icon">🚨</div><div class="metric-label" data-en="Open Escalations" data-fa="ارجاعات باز">Open Escalations</div><div class="metric-value" data-count="4">0</div><div class="metric-change down" data-en="Needs review" data-fa="نیاز به بررسی">Needs review</div></div>
+            <div class="metric-card" style="--accent:#10B981;"><div class="metric-accent"></div><div class="metric-icon">✅</div><div class="metric-label" data-en="Resolved This Week" data-fa="حل‌شده این هفته">Resolved This Week</div><div class="metric-value" data-count="9">0</div><div class="metric-change up" data-en="Good progress" data-fa="پیشرفت خوب">Good progress</div></div>
+            <div class="metric-card" style="--accent:#F59E0B;"><div class="metric-accent"></div><div class="metric-icon">⏱</div><div class="metric-label" data-en="Avg Resolution" data-fa="میانگین حل">Avg Resolution</div><div class="metric-value" data-count="6" data-suffix=".3h">0</div><div class="metric-change up" data-en="Target: 8h" data-fa="هدف: ۸ ساعت">Target: 8h</div></div>
+            <div class="metric-card" style="--accent:#8B5CF6;"><div class="metric-accent"></div><div class="metric-icon">📊</div><div class="metric-label" data-en="Escalation Rate" data-fa="نرخ ارجاع">Escalation Rate</div><div class="metric-value" data-count="8" data-suffix="%">0</div><div class="metric-change up" data-en="Below target" data-fa="زیر هدف">Below target</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title" data-en="Active Escalations" data-fa="ارجاعات فعال">Active Escalations</span><span class="card-badge urgent">4</span></div>
+            <table class="data-table">
+              <thead><tr><th>Ticket</th><th data-en="Client" data-fa="مشتری">Client</th><th data-en="Reason" data-fa="دلیل">Reason</th><th data-en="Escalated To" data-fa="ارجاع به">Escalated To</th><th data-en="Status" data-fa="وضعیت">Status</th></tr></thead>
+              <tbody>
+                <tr><td>#5821</td><td>Sarah M.</td><td data-en="Withdrawal blocked 48h" data-fa="برداشت ۴۸ ساعت مسدود">Withdrawal blocked 48h</td><td data-en="Finance Team" data-fa="تیم مالی">Finance Team</td><td><span class="badge b-prog" data-en="Pending" data-fa="در انتظار">Pending</span></td></tr>
+                <tr><td>#5800</td><td>Reza K.</td><td data-en="Account suspended wrongly" data-fa="تعلیق اشتباه حساب">Account suspended wrongly</td><td data-en="Compliance" data-fa="انطباق">Compliance</td><td><span class="badge b-prog" data-en="In Review" data-fa="در بررسی">In Review</span></td></tr>
+                <tr><td>#5789</td><td>Nina S.</td><td data-en="Large deposit missing" data-fa="واریز بزرگ گم‌شده">Large deposit missing</td><td data-en="Back Office" data-fa="بک‌آفیس">Back Office</td><td><span class="badge b-prog" data-en="In Review" data-fa="در بررسی">In Review</span></td></tr>
+                <tr><td>#5771</td><td>Chris L.</td><td data-en="KYC rejection appeal" data-fa="اعتراض رد KYC">KYC rejection appeal</td><td data-en="Manager" data-fa="مدیر">Manager</td><td><span class="badge b-done" data-en="Resolved" data-fa="حل‌شده">Resolved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── PERFORMANCE ── -->
+        <section id="page-performance" class="page">
+          <div class="page-header">
+            <h2 class="page-h2">📈 <span data-en="Performance" data-fa="عملکرد">Performance</span></h2>
+            <p class="page-sub" data-en="Your support metrics this month" data-fa="معیارهای پشتیبانی این ماه">Your support metrics this month</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card" style="--accent:#6C63FF;"><div class="metric-accent"></div><div class="metric-icon">🎫</div><div class="metric-label" data-en="Tickets Closed" data-fa="تیکت‌های بسته‌شده">Tickets Closed</div><div class="metric-value" data-count="142">0</div><div class="metric-change up" data-en="This month" data-fa="این ماه">This month</div></div>
+            <div class="metric-card" style="--accent:#10B981;"><div class="metric-accent"></div><div class="metric-icon">⏱</div><div class="metric-label" data-en="Avg Response" data-fa="میانگین پاسخ">Avg Response</div><div class="metric-value" data-count="8" data-suffix="m">0</div><div class="metric-change up" data-en="Improving" data-fa="در حال بهبود">Improving</div></div>
+            <div class="metric-card" style="--accent:#F59E0B;"><div class="metric-accent"></div><div class="metric-icon">⭐</div><div class="metric-label" data-en="CSAT Score" data-fa="امتیاز رضایت">CSAT Score</div><div class="metric-value" data-count="94" data-suffix="%">0</div><div class="metric-change up" data-en="Excellent" data-fa="عالی">Excellent</div></div>
+            <div class="metric-card" style="--accent:#8B5CF6;"><div class="metric-accent"></div><div class="metric-icon">📊</div><div class="metric-label" data-en="FCR Rate" data-fa="نرخ حل اول">FCR Rate</div><div class="metric-value" data-count="73" data-suffix="%">0</div><div class="metric-change up" data-en="Above avg" data-fa="بالاتر از میانگین">Above avg</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title" data-en="Monthly Breakdown" data-fa="تفکیک ماهانه">Monthly Breakdown</span></div>
+            <div class="bar-group"><div class="bar-meta"><span data-en="Tickets resolved" data-fa="تیکت‌های حل‌شده">Tickets resolved</span><span>142/180</span></div><div class="bar-track"><div class="bar-fill" style="--fill:79%;--color:#6C63FF;" data-width="79%"></div></div></div>
+            <div class="bar-group"><div class="bar-meta"><span data-en="Customer satisfaction" data-fa="رضایت مشتری">Customer satisfaction</span><span>94%</span></div><div class="bar-track"><div class="bar-fill" style="--fill:94%;--color:#10B981;" data-width="94%"></div></div></div>
+            <div class="bar-group"><div class="bar-meta"><span data-en="First contact resolution" data-fa="حل در اولین تماس">First contact resolution</span><span>73%</span></div><div class="bar-track"><div class="bar-fill" style="--fill:73%;--color:#8B5CF6;" data-width="73%"></div></div></div>
+            <div class="bar-group"><div class="bar-meta"><span data-en="On-time response rate" data-fa="نرخ پاسخ به موقع">On-time response rate</span><span>91%</span></div><div class="bar-track"><div class="bar-fill" style="--fill:91%;--color:#F59E0B;" data-width="91%"></div></div></div>
+            <div class="bar-group"><div class="bar-meta"><span data-en="Escalation rate" data-fa="نرخ ارجاع">Escalation rate</span><span>8%</span></div><div class="bar-track"><div class="bar-fill" style="--fill:8%;--color:#EF4444;" data-width="8%"></div></div></div>
+          </div>
+          <div class="card chart-card">
+            <div class="card-header"><span class="card-title" data-en="Monthly CSAT Trend" data-fa="روند CSAT ماهانه">Monthly CSAT Trend</span></div>
+            <canvas id="chart-csat" height="80"></canvas>
+          </div>
+        </section>
+
+        <!-- ── KNOWLEDGE BASE ── -->
+        <section id="page-knowledge" class="page">
+          <div class="page-header">
+            <h2 class="page-h2">🔍 <span data-en="Knowledge Base" data-fa="پایگاه دانش">Knowledge Base</span></h2>
+            <p class="page-sub" data-en="Quick reference guides and support articles" data-fa="راهنماها و مقالات پشتیبانی">Quick reference guides and support articles</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card" style="--accent:#6C63FF;"><div class="metric-accent"></div><div class="metric-icon">📚</div><div class="metric-label" data-en="Total Articles" data-fa="مجموع مقالات">Total Articles</div><div class="metric-value" data-count="84">0</div><div class="metric-change up" data-en="Available" data-fa="در دسترس">Available</div></div>
+            <div class="metric-card" style="--accent:#10B981;"><div class="metric-accent"></div><div class="metric-icon">🔥</div><div class="metric-label" data-en="Most Used" data-fa="بیشترین استفاده">Most Used</div><div class="metric-value" style="font-size:20px;" data-en="KYC" data-fa="KYC">KYC</div><div class="metric-change up" data-en="This week" data-fa="این هفته">This week</div></div>
+            <div class="metric-card" style="--accent:#F59E0B;"><div class="metric-accent"></div><div class="metric-icon">🆕</div><div class="metric-label" data-en="Recently Added" data-fa="اخیراً اضافه‌شده">Recently Added</div><div class="metric-value" data-count="3">0</div><div class="metric-change up" data-en="New articles" data-fa="مقالات جدید">New articles</div></div>
+            <div class="metric-card" style="--accent:#8B5CF6;"><div class="metric-accent"></div><div class="metric-icon">🔎</div><div class="metric-label" data-en="Your Searches" data-fa="جستجوهای شما">Your Searches</div><div class="metric-value" data-count="27">0</div><div class="metric-change up" data-en="This month" data-fa="این ماه">This month</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title" data-en="Popular Articles" data-fa="مقالات محبوب">Popular Articles</span></div>
+            <table class="data-table">
+              <thead><tr><th data-en="Article" data-fa="مقاله">Article</th><th data-en="Category" data-fa="دسته‌بندی">Category</th><th data-en="Views" data-fa="بازدید">Views</th><th data-en="Helpful" data-fa="مفید">Helpful</th></tr></thead>
+              <tbody>
+                <tr><td>📄 <span data-en="How to complete KYC verification" data-fa="نحوه تکمیل تایید KYC">How to complete KYC verification</span></td><td data-en="Compliance" data-fa="انطباق">Compliance</td><td>312</td><td style="color:#10B981;font-weight:700;">98%</td></tr>
+                <tr><td>📄 <span data-en="Withdrawal processing times" data-fa="زمان‌های پردازش برداشت">Withdrawal processing times</span></td><td data-en="Finance" data-fa="مالی">Finance</td><td>278</td><td style="color:#10B981;font-weight:700;">95%</td></tr>
+                <tr><td>📄 <span data-en="How to reset your password" data-fa="نحوه بازنشانی رمز">How to reset your password</span></td><td data-en="Account" data-fa="حساب">Account</td><td>201</td><td style="color:#10B981;font-weight:700;">99%</td></tr>
+                <tr><td>📄 <span data-en="Deposit methods and limits" data-fa="روش‌ها و محدودیت‌های واریز">Deposit methods and limits</span></td><td data-en="Finance" data-fa="مالی">Finance</td><td>189</td><td style="color:#10B981;font-weight:700;">91%</td></tr>
+                <tr><td>📄 <span data-en="MT4 platform connection guide" data-fa="راهنمای اتصال MT4">MT4 platform connection guide</span></td><td data-en="Platform" data-fa="پلتفرم">Platform</td><td>154</td><td style="color:#10B981;font-weight:700;">87%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── MY PROFILE ── -->
+        <section id="page-profile" class="page">
+          <div class="page-header">
+            <h2 class="page-h2">👤 <span data-en="My Profile" data-fa="پروفایل من">My Profile</span></h2>
+            <p class="page-sub" data-en="Your agent information and account details" data-fa="اطلاعات کارشناس و جزئیات حساب">Your agent information and account details</p>
+          </div>
+          <div class="profile-hero card">
+            <div class="profile-avatar-lg">MB</div>
+            <div class="profile-meta">
+              <div class="profile-name">Mahyar Baghdadi</div>
+              <div class="profile-role" data-en="Support Agent · Opofinance" data-fa="کارشناس پشتیبانی · اوپوفایننس">Support Agent · Opofinance</div>
+              <div class="profile-tags">
+                <span class="ptag green" data-en="🟢 Online" data-fa="🟢 آنلاین">🟢 Online</span>
+                <span class="ptag gold" data-en="⭐ Senior Agent" data-fa="⭐ کارشناس ارشد">⭐ Senior Agent</span>
+              </div>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="card">
+              <div class="card-header"><span class="card-title" data-en="Agent Information" data-fa="اطلاعات کارشناس">Agent Information</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Full Name" data-fa="نام کامل">Full Name</span><span class="stat-val">Mahyar Baghdadi</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Email" data-fa="ایمیل">Email</span><span class="stat-val">mahyar@opofinance.com</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Department" data-fa="دپارتمان">Department</span><span class="stat-val" data-en="Chat Support" data-fa="پشتیبانی چت">Chat Support</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Agent ID" data-fa="شناسه کارشناس">Agent ID</span><span class="stat-val">#AGT-2847</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Joined" data-fa="تاریخ ورود">Joined</span><span class="stat-val" data-en="March 2023" data-fa="اسفند ۱۴۰۱">March 2023</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Shift" data-fa="شیفت">Shift</span><span class="stat-val" data-en="Morning (08:00–16:00)" data-fa="صبح (۸:۰۰–۱۶:۰۰)">Morning (08:00–16:00)</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Languages" data-fa="زبان‌ها">Languages</span><span class="stat-val" data-en="English, Persian" data-fa="انگلیسی، فارسی">English, Persian</span></div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title" data-en="Career Stats" data-fa="آمار کاری">Career Stats</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Total tickets resolved" data-fa="مجموع تیکت‌های حل‌شده">Total tickets resolved</span><span class="stat-val" data-count="1284">0</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Overall CSAT" data-fa="CSAT کلی">Overall CSAT</span><span class="stat-val" data-count="94" data-suffix="%">0</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Avg response time" data-fa="میانگین زمان پاسخ">Avg response time</span><span class="stat-val" data-count="8" data-suffix="m">0</span></div>
+              <div class="stat-row"><span class="stat-label" data-en="Years at company" data-fa="سال‌ها در شرکت">Years at company</span><span class="stat-val" data-count="3" data-suffix="+ yrs">0</span></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

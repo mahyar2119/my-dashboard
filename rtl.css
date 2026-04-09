@@ -1,0 +1,152 @@
+/* ============================================================
+   rtl.css — RTL layout support for Persian (Farsi)
+   ============================================================ */
+
+body.lang-fa {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Segoe UI', Tahoma, 'Vazirmatn', sans-serif;
+}
+
+/* Flip sidebar */
+body.lang-fa .sidebar {
+  left: auto;
+  right: 0;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+}
+
+body.lang-fa .nav-item {
+  border-left: none;
+  border-right: 3px solid transparent;
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+body.lang-fa .nav-item.active {
+  border-right-color: var(--purple-400);
+}
+
+body.lang-fa .nav-item.active::before {
+  left: auto;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+body.lang-fa .nav-badge {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Flip main wrap */
+body.lang-fa #screen-dashboard {
+  flex-direction: row-reverse;
+}
+
+/* Mobile sidebar flip */
+@media (max-width: 900px) {
+  body.lang-fa .sidebar {
+    right: 0;
+    left: auto;
+    transform: translateX(100%);
+  }
+
+  body.lang-fa .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+/* Input icon flip */
+body.lang-fa .input-icon {
+  left: auto;
+  right: 14px;
+}
+
+body.lang-fa .input-wrap input {
+  padding-left: 14px;
+  padding-right: 40px;
+}
+
+/* Auth logo RTL */
+body.lang-fa .auth-logo {
+  flex-direction: row-reverse;
+}
+
+/* Logo button RTL */
+body.lang-fa .logo-btn {
+  flex-direction: row-reverse;
+}
+
+/* Sidebar user RTL */
+body.lang-fa .sidebar-user {
+  flex-direction: row-reverse;
+}
+
+body.lang-fa .sidebar-footer {
+  text-align: right;
+}
+
+/* Topbar RTL */
+body.lang-fa .topbar-actions {
+  flex-direction: row-reverse;
+}
+
+/* Avatar RTL */
+body.lang-fa .avatar-btn {
+  flex-direction: row-reverse;
+  padding: 4px 4px 4px 10px;
+}
+
+/* Table RTL */
+body.lang-fa .data-table th,
+body.lang-fa .data-table td {
+  text-align: right;
+}
+
+/* Card header RTL */
+body.lang-fa .card-header {
+  flex-direction: row-reverse;
+}
+
+/* Stat row RTL */
+body.lang-fa .stat-row {
+  flex-direction: row-reverse;
+}
+
+/* Bar meta RTL */
+body.lang-fa .bar-meta {
+  flex-direction: row-reverse;
+}
+
+/* Profile RTL */
+body.lang-fa .profile-hero {
+  flex-direction: row-reverse;
+}
+
+body.lang-fa .profile-tags {
+  flex-direction: row-reverse;
+}
+
+/* Metric card RTL */
+body.lang-fa .metric-card {
+  text-align: right;
+}
+
+/* Page header RTL */
+body.lang-fa .page-h2 {
+  flex-direction: row-reverse;
+}
+
+/* Logout button RTL */
+body.lang-fa .logout-btn {
+  flex-direction: row-reverse;
+}
+
+/* Nav label RTL */
+body.lang-fa .nav-label {
+  text-align: right;
+}
+
+/* Two col keeps normal in RTL */
+body.lang-fa .two-col {
+  direction: rtl;
+}

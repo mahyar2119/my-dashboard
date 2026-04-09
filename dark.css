@@ -1,0 +1,101 @@
+/* ============================================================
+   dark.css — Dark mode overrides
+   ============================================================ */
+
+body.theme-dark {
+  --bg-body:        #0c0a1a;
+  --bg-card:        #13112a;
+  --bg-input:       #1c1935;
+  --bg-sidebar:     #08061a;
+  --bg-topbar:      #13112a;
+  --bg-bar:         #1e1c38;
+  --bg-hover:       #1c1935;
+
+  --text-primary:   #ebe9f8;
+  --text-secondary: #9d99c0;
+  --text-muted:     #6e6a90;
+  --text-faint:     #3d3a5a;
+
+  --border:         #1e1c38;
+  --border-input:   #2a2748;
+  --border-row:     #181630;
+
+  --purple-100: rgba(108,99,255,0.12);
+  --purple-300: rgba(108,99,255,0.5);
+  --blue-100:   rgba(59,130,246,0.12);
+  --green-100:  rgba(16,185,129,0.12);
+  --amber-100:  rgba(245,158,11,0.12);
+  --red-100:    rgba(239,68,68,0.12);
+  --violet-100: rgba(139,92,246,0.12);
+
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.5);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+body.theme-dark .auth-card {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.07);
+}
+
+body.theme-dark .data-table tbody tr:hover td {
+  background: rgba(108,99,255,0.06);
+}
+
+body.theme-dark .badge {
+  /* Ensure badges still read in dark */
+}
+
+body.theme-dark .b-high  { background: rgba(239,68,68,0.2);    color: #fca5a5; }
+body.theme-dark .b-med   { background: rgba(245,158,11,0.2);   color: #fcd34d; }
+body.theme-dark .b-low   { background: rgba(108,99,255,0.2);   color: #a5b4fc; }
+body.theme-dark .b-open  { background: rgba(59,130,246,0.2);   color: #93c5fd; }
+body.theme-dark .b-prog  { background: rgba(245,158,11,0.2);   color: #fcd34d; }
+body.theme-dark .b-done  { background: rgba(16,185,129,0.2);   color: #6ee7b7; }
+body.theme-dark .b-vip   { background: rgba(108,99,255,0.2);   color: #c4b5fd; }
+
+body.theme-dark .card-badge {
+  background: rgba(108,99,255,0.2);
+  color: var(--purple-400);
+}
+
+body.theme-dark .card-badge.urgent {
+  background: rgba(239,68,68,0.2);
+  color: #fca5a5;
+}
+
+body.theme-dark .notif-pill {
+  background: rgba(239,68,68,0.15);
+  border-color: rgba(239,68,68,0.25);
+}
+
+body.theme-dark .profile-hero {
+  background: linear-gradient(135deg, #0d0a28, #12103a, #0a1530);
+}
+
+body.theme-dark .ctrl-btn {
+  background: #1c1935;
+  border-color: #2a2748;
+  color: #9d99c0;
+}
+
+body.theme-dark .ctrl-btn:hover {
+  background: rgba(108,99,255,0.15);
+  border-color: rgba(108,99,255,0.4);
+  color: var(--purple-400);
+}
+
+body.theme-dark .avatar-btn {
+  background: #1c1935;
+  border-color: #2a2748;
+}
+
+body.theme-dark .bar-track {
+  background: #1e1c38;
+}
+
+/* Dark mode chart area */
+body.theme-dark canvas {
+  filter: brightness(0.9);
+}
