@@ -1,37 +1,113 @@
-/* ============================================
-   Opofinance Support Dashboard — app.js
-   ============================================ */
+/* ============================================================
+   Opofinance Support Dashboard
+   app.js — all interactivity and button logic
+   ============================================================ */
 
 'use strict';
 
-/* ── SCREEN NAVIGATION ── */
+/* ============================================================
+   SCREEN NAVIGATION
+   ============================================================ */
 
+/**
+ * Hide all screens and show the one with the given id.
+ * @param {string} id - The id of the screen to show.
+ */
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(function(screen) {
+  document.querySelectorAll('.screen').forEach(function (screen) {
     screen.classList.remove('active');
   });
-  const target = document.getElementById(id);
-  if (target) target.classList.add('active');
+
+  var target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+  }
 }
 
-function showDashboard() {
-  showScreen('dashboard-screen');
+/* ============================================================
+   AUTH — LOGIN
+   ============================================================ */
+
+function initLogin() {
+  var loginBtn = document.getElementById('login-btn');
+  if (!loginBtn) return;
+
+  loginBtn.addEventListener('click', function () {
+    var email    = document.getElementById('login-email').value.trim();
+    var password = document.getElementById('login-password').value.trim();
+
+    if (!email || !password) {
+      alert('Please enter your email and password.');
+      return;
+    }
+
+    showScreen('dashboard-screen');
+  });
 }
 
-function showLogin() {
-  showScreen('login-screen');
+/* ============================================================
+   AUTH — SIGN UP
+   ============================================================ */
+
+function initSignup() {
+  var signupBtn = document.getElementById('signup-btn');
+  if (!signupBtn) return;
+
+  signupBtn.addEventListener('click', function () {
+    var name     = document.getElementById('signup-name').value.trim();
+    var email    = document.getElementById('signup-email').value.trim();
+    var password = document.getElementById('signup-password').value.trim();
+
+    if (!name || !email || !password) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    showScreen('dashboard-screen');
+  });
 }
 
-function showSignup() {
-  showScreen('signup-screen');
+/* ============================================================
+   LOGOUT
+   ============================================================ */
+
+function initLogout() {
+  var logoutBtn = document.getElementById('logout-btn');
+  if (!logoutBtn) return;
+
+  logoutBtn.addEventListener('click', function () {
+    showScreen('login-screen');
+  });
 }
 
-/* ── SIDEBAR NAV ACTIVE STATE ── */
+/* ============================================================
+   SWITCH LINKS (Login ↔ Sign Up)
+   ============================================================ */
+
+function initSwitchLinks() {
+  var goSignup = document.getElementById('go-signup');
+  if (goSignup) {
+    goSignup.addEventListener('click', function () {
+      showScreen('signup-screen');
+    });
+  }
+
+  var goLogin = document.getElementById('go-login');
+  if (goLogin) {
+    goLogin.addEventListener('click', function () {
+      showScreen('login-screen');
+    });
+  }
+}
+
+/* ============================================================
+   SIDEBAR NAVIGATION — active state
+   ============================================================ */
 
 function initNavItems() {
-  document.querySelectorAll('.nav-item').forEach(function(item) {
-    item.addEventListener('click', function() {
-      document.querySelectorAll('.nav-item').forEach(function(n) {
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      document.querySelectorAll('.nav-item').forEach(function (n) {
         n.classList.remove('active');
       });
       this.classList.add('active');
@@ -39,69 +115,40 @@ function initNavItems() {
   });
 }
 
-/* ── LOGIN FORM VALIDATION ── */
+/* ============================================================
+   INIT — run everything on DOM ready
+   ============================================================ */
 
-function initLoginForm() {
-  const loginBtn = document.getElementById('login-btn');
-  if (!loginBtn) return;
-
-  loginBtn.addEventListener('click', function() {
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value.trim();
-
-    if (!email || !password) {
-      alert('Please enter your email and password.');
-      return;
-    }
-
-    showDashboard();
-  });
-}
-
-/* ── SIGNUP FORM VALIDATION ── */
-
-function initSignupForm() {
-  const signupBtn = document.getElementById('signup-btn');
-  if (!signupBtn) return;
-
-  signupBtn.addEventListener('click', function() {
-    const name     = document.getElementById('signup-name').value.trim();
-    const email    = document.getElementById('signup-email').value.trim();
-    const password = document.getElementById('signup-password').value.trim();
-
-    if (!name || !email || !password) {
-      alert('Please fill in all fields.');
-      return;
-    }
-
-    showDashboard();
-  });
-}
-
-/* ── LOGOUT ── */
-
-function initLogout() {
-  document.querySelectorAll('.logout-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      showLogin();
-    });
-  });
-}
-
-/* ── INIT ── */
-
-document.addEventListener('DOMContentLoaded', function() {
-  initNavItems();
-  initLoginForm();
-  initSignupForm();
+document.addEventListener('DOMContentLoaded', function () {
+  initLogin();
+  initSignup();
   initLogout();
+  initSwitchLinks();
+  initNavItems();
+  initThemeToggle();
 });
 
-/* ── LINK CLICKS (go-signup / go-login) ── */
-document.addEventListener('DOMContentLoaded', function() {
-  const goSignup = document.getElementById('go-signup');
-  if (goSignup) goSignup.addEventListener('click', showSignup);
+/* ============================================================
+   DARK / LIGHT MODE TOGGLE
+   ============================================================ */
 
-  const goLogin = document.getElementById('go-login');
-  if (goLogin) goLogin.addEventListener('click', showLogin);
-});
+function initThemeToggle() {
+  var btn   = document.getElementById('theme-toggle');
+  var icon  = btn.querySelector('.toggle-icon');
+  var label = btn.querySelector('.toggle-label');
+  var isDark = false;
+
+  btn.addEventListener('click', function () {
+    isDark = !isDark;
+
+    if (isDark) {
+      document.body.classList.add('dark');
+      icon.textContent  = '☀️';
+      label.textContent = 'Light mode';
+    } else {
+      document.body.classList.remove('dark');
+      icon.textContent  = '🌙';
+      label.textContent = 'Dark mode';
+    }
+  });
+}
