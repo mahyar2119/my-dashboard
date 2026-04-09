@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Opofinance — Support Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ================================================
+       SCREEN 1: LOGIN
+       ================================================ -->
+  <div id="login-screen" class="screen active">
+    <div class="login-card">
+      <div class="login-logo">OP</div>
+      <h2>Opofinance</h2>
+      <p class="sub">Support Portal — sign in to continue</p>
+
+      <div class="form-group">
+        <label for="login-email">Email address</label>
+        <input type="email" id="login-email" placeholder="mahyar@opofinance.com" value="mahyar@opofinance.com" />
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" value="password" />
+      </div>
+
+      <button class="btn-primary" id="login-btn">Sign in</button>
+      <div class="switch-link">New here? <a id="go-signup">Create an account</a></div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       SCREEN 2: SIGN UP
+       ================================================ -->
+  <div id="signup-screen" class="screen">
+    <div class="login-card">
+      <div class="login-logo">OP</div>
+      <h2>Create account</h2>
+      <p class="sub">Join the Opofinance support team</p>
+
+      <div class="form-group">
+        <label for="signup-name">Full name</label>
+        <input type="text" id="signup-name" placeholder="Mahyar Baghdadi" />
+      </div>
+      <div class="form-group">
+        <label for="signup-email">Email address</label>
+        <input type="email" id="signup-email" placeholder="mahyar@opofinance.com" />
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" placeholder="Create a password" />
+      </div>
+
+      <button class="btn-primary" id="signup-btn">Register</button>
+      <div class="switch-link">Already have an account? <a id="go-login">Sign in</a></div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       SCREEN 3: DASHBOARD
+       ================================================ -->
+  <div id="dashboard-screen" class="screen">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-name">Opofinance</div>
+        <div class="brand-sub">Support Portal</div>
+      </div>
+
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item active"><span class="nav-icon">◈</span><span>Overview</span></div>
+      <div class="nav-item"><span class="nav-icon">🎫</span><span>My Tickets</span></div>
+      <div class="nav-item"><span class="nav-icon">👤</span><span>Client Accounts</span></div>
+      <div class="nav-item"><span class="nav-icon">⚠️</span><span>Escalations</span></div>
+
+      <div class="nav-section-label">Tools</div>
+      <div class="nav-item"><span class="nav-icon">💬</span><span>Live Chat</span></div>
+      <div class="nav-item"><span class="nav-icon">📊</span><span>Reports</span></div>
+      <div class="nav-item"><span class="nav-icon">⚙️</span><span>Settings</span></div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar">MB</div>
+          <div>
+            <div class="sidebar-user-name">Mahyar Baghdadi</div>
+            <div class="sidebar-user-role">Support Agent</div>
+          </div>
+        </div>
+        <button class="logout-btn" id="logout-btn">Sign out</button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-greeting">
+          <h3>Good morning, Mahyar 👋</h3>
+          <p>Wednesday, April 8 2026 — Support Agent, Opofinance</p>
+        </div>
+        <div class="topbar-right">
+          <span class="notif-badge">4 urgent</span>
+
+          <!-- DARK / LIGHT MODE BUTTON -->
+          <button class="theme-toggle" id="theme-toggle">
+            <span class="toggle-icon">🌙</span>
+            <span class="toggle-label">Dark mode</span>
+          </button>
+
+          <div class="topbar-user">
+            <div class="topbar-user-info">
+              <div class="name">Mahyar Baghdadi</div>
+              <div class="role">Support Agent</div>
+            </div>
+            <div class="topbar-avatar">MB</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <!-- METRIC CARDS -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-accent-bar" style="background:#534AB7;"></div>
+            <div class="metric-icon">🎫</div>
+            <div class="metric-label">Open tickets</div>
+            <div class="metric-value">24</div>
+            <div class="metric-change up">↑ 3 since yesterday</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-accent-bar" style="background:#1D9E75;"></div>
+            <div class="metric-icon">✅</div>
+            <div class="metric-label">Resolved today</div>
+            <div class="metric-value">11</div>
+            <div class="metric-change up">↑ 2 above average</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-accent-bar" style="background:#D85A30;"></div>
+            <div class="metric-icon">⏱</div>
+            <div class="metric-label">Avg response time</div>
+            <div class="metric-value">8m</div>
+            <div class="metric-change down">↑ 1m over target</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-accent-bar" style="background:#BA7517;"></div>
+            <div class="metric-icon">⭐</div>
+            <div class="metric-label">CSAT score</div>
+            <div class="metric-value">94%</div>
+            <div class="metric-change up">↑ 2% this week</div>
+          </div>
+        </div>
+
+        <!-- WIDGETS -->
+        <div class="widgets-row">
+
+          <div class="widget-card">
+            <div class="widget-header">
+              <span class="widget-title">Recent tickets</span>
+              <span class="widget-badge">24 open</span>
+            </div>
+            <div class="ticket-item">
+              <span class="ticket-id">#T-4821</span>
+              <span class="ticket-desc">Withdrawal not processed — client ID 20847</span>
+              <span class="ticket-status s-urgent">Urgent</span>
+            </div>
+            <div class="ticket-item">
+              <span class="ticket-id">#T-4820</span>
+              <span class="ticket-desc">Login issue after password reset</span>
+              <span class="ticket-status s-open">Open</span>
+            </div>
+            <div class="ticket-item">
+              <span class="ticket-id">#T-4818</span>
+              <span class="ticket-desc">KYC documents rejected — appeal request</span>
+              <span class="ticket-status s-pending">Pending</span>
+            </div>
+            <div class="ticket-item">
+              <span class="ticket-id">#T-4815</span>
+              <span class="ticket-desc">MT5 platform connection error</span>
+              <span class="ticket-status s-urgent">Urgent</span>
+            </div>
+            <div class="ticket-item">
+              <span class="ticket-id">#T-4812</span>
+              <span class="ticket-desc">Deposit not reflected in account balance</span>
+              <span class="ticket-status s-resolved">Resolved</span>
+            </div>
+            <div class="ticket-item">
+              <span class="ticket-id">#T-4810</span>
+              <span class="ticket-desc">Leverage change request for live account</span>
+              <span class="ticket-status s-open">Open</span>
+            </div>
+          </div>
+
+          <div class="right-col">
+            <div class="widget-card">
+              <div class="widget-header">
+                <span class="widget-title">My performance</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Tickets this week</span>
+                <span class="stat-val">47</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Escalations raised</span>
+                <span class="stat-val">3</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">First contact resolution</span>
+                <span class="stat-val">78%</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">SLA breaches</span>
+                <span class="stat-val bad">2</span>
+              </div>
+            </div>
+
+            <div class="widget-card">
+              <div class="widget-header">
+                <span class="widget-title">Ticket categories</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar-meta"><span>Withdrawals</span><span>35%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="width:35%;background:#534AB7;"></div></div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-meta"><span>Account access</span><span>28%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="width:28%;background:#1D9E75;"></div></div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-meta"><span>KYC / documents</span><span>22%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="width:22%;background:#BA7517;"></div></div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-meta"><span>Platform issues</span><span>15%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="width:15%;background:#D85A30;"></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+
+</body>
+</html>
