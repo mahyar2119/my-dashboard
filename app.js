@@ -50,28 +50,5 @@ document.querySelectorAll('.nav-item[data-page]').forEach(function (item) {
   });
 });
 
-/* ============================================================
-   DARK / LIGHT MODE TOGGLE
-   ============================================================ */
- 
-function initThemeToggle() {
-  var btn   = document.getElementById('theme-toggle');
-  var icon  = btn.querySelector('.toggle-icon');
-  var label = btn.querySelector('.toggle-label');
-  var isDark = false;
- 
-  btn.addEventListener('click', function () {
-    isDark = !isDark;
- 
-    if (isDark) {
-      document.body.classList.add('dark');
-      icon.textContent  = '☀️';
-      label.textContent = 'Light mode';
-    } else {
-      document.body.classList.remove('dark');
-      icon.textContent  = '🌙';
-      label.textContent = 'Dark mode';
-    }
-  });
-}
+
  
