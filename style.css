@@ -1,99 +1,67 @@
 /* ============================================================
-   Opofinance Support Dashboard
-   style.css — all visual styles
+   Opofinance Support Dashboard — style.css
    ============================================================ */
 
-/* ── CSS VARIABLES — LIGHT MODE (default) ── */
+/* ── LIGHT MODE VARIABLES (default) ── */
 :root {
-  --bg-body:          #f4f3fb;
-  --bg-card:          #ffffff;
-  --bg-input:         #f9f8ff;
-  --bg-input-focus:   #ffffff;
-  --bg-metric:        #ffffff;
-  --bg-widget:        #ffffff;
-  --bg-topbar:        #ffffff;
-  --bg-bar-track:     #f0eef9;
-
-  --text-primary:     #1a1a2e;
-  --text-secondary:   #555;
-  --text-muted:       #999;
-  --text-faint:       #bbb;
-  --text-ticket:      #333;
-  --text-bar-meta:    #777;
-
-  --border-card:      #ece9f8;
-  --border-input:     #e0dff5;
-  --border-ticket:    #f0eef9;
-  --border-stat:      #f0eef9;
-
-  --sidebar-bg:       #26215C;
-  --sidebar-text:     rgba(255,255,255,0.6);
-  --sidebar-active:   rgba(255,255,255,0.1);
-  --sidebar-hover:    rgba(255,255,255,0.06);
-  --sidebar-border:   rgba(255,255,255,0.08);
-  --sidebar-muted:    rgba(255,255,255,0.4);
-  --sidebar-label:    rgba(255,255,255,0.3);
-  --sidebar-name:     #ffffff;
-
-  --btn-logout-bg:    rgba(255,255,255,0.06);
-  --btn-logout-text:  rgba(255,255,255,0.6);
-  --btn-logout-bdr:   rgba(255,255,255,0.12);
-  --btn-logout-hover: rgba(255,255,255,0.14);
-
-  --theme-btn-bg:     #f0eef9;
-  --theme-btn-text:   #534AB7;
-  --theme-btn-border: #e0dff5;
-
-  --shadow-card:      rgba(83,74,183,0.1);
-  --shadow-login:     rgba(83,74,183,0.2);
+  --bg-body:        #f4f3fb;
+  --bg-card:        #ffffff;
+  --bg-input:       #f9f8ff;
+  --bg-bar:         #f0eef9;
+  --text-primary:   #1a1a2e;
+  --text-secondary: #555555;
+  --text-muted:     #999999;
+  --text-faint:     #bbbbbb;
+  --text-ticket:    #333333;
+  --border:         #ece9f8;
+  --border-input:   #e0dff5;
+  --border-row:     #f0eef9;
+  --sidebar-bg:     #26215C;
+  --sidebar-name:   #ffffff;
+  --sidebar-text:   rgba(255, 255, 255, 0.6);
+  --sidebar-muted:  rgba(255, 255, 255, 0.4);
+  --sidebar-label:  rgba(255, 255, 255, 0.3);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-hover:  rgba(255, 255, 255, 0.06);
+  --sidebar-active: rgba(255, 255, 255, 0.10);
+  --logout-bg:      rgba(255, 255, 255, 0.06);
+  --logout-text:    rgba(255, 255, 255, 0.6);
+  --logout-border:  rgba(255, 255, 255, 0.12);
+  --shadow:         rgba(83, 74, 183, 0.10);
 }
 
-/* ── CSS VARIABLES — DARK MODE ── */
+/* ── DARK MODE VARIABLES ── */
 body.dark {
-  --bg-body:          #0f0e1a;
-  --bg-card:          #1a1829;
-  --bg-input:         #231f38;
-  --bg-input-focus:   #2a2640;
-  --bg-metric:        #1a1829;
-  --bg-widget:        #1a1829;
-  --bg-topbar:        #1a1829;
-  --bg-bar-track:     #2a2640;
-
-  --text-primary:     #e8e6f0;
-  --text-secondary:   #a09abc;
-  --text-muted:       #7a748f;
-  --text-faint:       #4a4560;
-  --text-ticket:      #ccc8e0;
-  --text-bar-meta:    #8a84a0;
-
-  --border-card:      #2a2640;
-  --border-input:     #3a3555;
-  --border-ticket:    #241f38;
-  --border-stat:      #241f38;
-
-  --sidebar-bg:       #110e24;
-  --sidebar-text:     rgba(255,255,255,0.5);
-  --sidebar-active:   rgba(255,255,255,0.08);
-  --sidebar-hover:    rgba(255,255,255,0.04);
-  --sidebar-border:   rgba(255,255,255,0.06);
-  --sidebar-muted:    rgba(255,255,255,0.3);
-  --sidebar-label:    rgba(255,255,255,0.2);
-  --sidebar-name:     #e8e6f0;
-
-  --btn-logout-bg:    rgba(255,255,255,0.04);
-  --btn-logout-text:  rgba(255,255,255,0.5);
-  --btn-logout-bdr:   rgba(255,255,255,0.08);
-  --btn-logout-hover: rgba(255,255,255,0.1);
-
-  --theme-btn-bg:     #231f38;
-  --theme-btn-text:   #a99ff0;
-  --theme-btn-border: #3a3555;
-
-  --shadow-card:      rgba(0,0,0,0.3);
-  --shadow-login:     rgba(0,0,0,0.4);
+  --bg-body:        #0f0e1a;
+  --bg-card:        #1a1829;
+  --bg-input:       #231f38;
+  --bg-bar:         #2a2640;
+  --text-primary:   #e8e6f0;
+  --text-secondary: #a09abc;
+  --text-muted:     #7a748f;
+  --text-faint:     #4a4560;
+  --text-ticket:    #ccc8e0;
+  --border:         #2a2640;
+  --border-input:   #3a3555;
+  --border-row:     #241f38;
+  --sidebar-bg:     #110e24;
+  --sidebar-name:   #e8e6f0;
+  --sidebar-text:   rgba(255, 255, 255, 0.5);
+  --sidebar-muted:  rgba(255, 255, 255, 0.3);
+  --sidebar-label:  rgba(255, 255, 255, 0.2);
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-hover:  rgba(255, 255, 255, 0.04);
+  --sidebar-active: rgba(255, 255, 255, 0.08);
+  --logout-bg:      rgba(255, 255, 255, 0.04);
+  --logout-text:    rgba(255, 255, 255, 0.5);
+  --logout-border:  rgba(255, 255, 255, 0.08);
+  --shadow:         rgba(0, 0, 0, 0.30);
 }
 
-/* ── RESET & BASE ── */
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -106,31 +74,6 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   transition: background 0.3s, color 0.3s;
-}
-
-/* ── THEME TOGGLE BUTTON ── */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 99px;
-  background: var(--theme-btn-bg);
-  color: var(--theme-btn-text);
-  border: 1px solid var(--theme-btn-border);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-
-.theme-toggle:hover {
-  opacity: 0.85;
-}
-
-.theme-toggle .toggle-icon {
-  font-size: 15px;
 }
 
 /* ============================================================
@@ -164,7 +107,8 @@ body {
   padding: 2.5rem;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 8px 40px var(--shadow-login);
+  box-shadow: 0 8px 40px rgba(83, 74, 183, 0.2);
+  transition: background 0.3s;
 }
 
 .login-logo {
@@ -219,7 +163,7 @@ body {
   background: var(--bg-input);
   color: var(--text-primary);
   font-size: 14px;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.3s, color 0.3s;
 }
 
 .form-group input:focus {
@@ -228,7 +172,7 @@ body {
   background: var(--bg-card);
 }
 
-/* ── BUTTON ── */
+/* ── BUTTONS ── */
 
 .btn-primary {
   width: 100%;
@@ -293,6 +237,7 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
+  transition: background 0.3s;
 }
 
 .sidebar-brand {
@@ -301,14 +246,14 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.sidebar-brand .brand-name {
-  color: #fff;
+.brand-name {
+  color: var(--sidebar-name);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
 
-.sidebar-brand .brand-sub {
+.brand-sub {
   color: var(--sidebar-muted);
   font-size: 11px;
   margin-top: 3px;
@@ -336,7 +281,7 @@ body {
 }
 
 .nav-item:hover  { background: var(--sidebar-hover); color: #fff; }
-.nav-item.active { background: var(--sidebar-active);  color: #fff; border-left-color: #5DCAA5; }
+.nav-item.active { background: var(--sidebar-active); color: #fff; border-left-color: #5DCAA5; }
 
 .nav-icon {
   width: 18px;
@@ -388,16 +333,16 @@ body {
   width: 100%;
   padding: 8px;
   border-radius: 8px;
-  background: var(--btn-logout-bg);
-  color: var(--btn-logout-text);
-  border: 1px solid var(--btn-logout-bdr);
+  background: var(--logout-bg);
+  color: var(--logout-text);
+  border: 1px solid var(--logout-border);
   cursor: pointer;
   font-size: 13px;
   transition: background 0.15s, color 0.15s;
 }
 
 .logout-btn:hover {
-  background: var(--btn-logout-hover);
+  background: rgba(255, 255, 255, 0.14);
   color: #fff;
 }
 
@@ -410,13 +355,14 @@ body {
   background: var(--bg-body);
   overflow-x: hidden;
   min-width: 0;
+  transition: background 0.3s;
 }
 
 /* ── TOPBAR ── */
 
 .topbar {
   background: var(--bg-card);
-  border-bottom: 1px solid var(--border-card);
+  border-bottom: 1px solid var(--border);
   padding: 1rem 1.75rem;
   display: flex;
   align-items: center;
@@ -424,6 +370,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .topbar-greeting h3 {
@@ -441,7 +388,7 @@ body {
 .topbar-right {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .notif-badge {
@@ -452,6 +399,32 @@ body {
   padding: 4px 12px;
   border-radius: 99px;
 }
+
+/* ── DARK / LIGHT MODE TOGGLE ── */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  border-radius: 99px;
+  background: linear-gradient(135deg, #534AB7, #1D9E75);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(83, 74, 183, 0.3);
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.theme-toggle:hover  { opacity: 0.88; }
+.theme-toggle:active { transform: scale(0.97); }
+
+.toggle-icon { font-size: 15px; }
+
+/* ── TOPBAR USER ── */
 
 .topbar-user {
   display: flex;
@@ -498,22 +471,20 @@ body {
   background: var(--bg-card);
   border-radius: 16px;
   padding: 1.25rem;
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.3s, border-color 0.3s;
 }
 
 .metric-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow-card);
+  box-shadow: 0 6px 20px var(--shadow);
 }
 
 .metric-accent-bar {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 4px;
 }
 
@@ -539,7 +510,8 @@ body {
   background: var(--bg-card);
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border);
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .widget-header {
@@ -567,24 +539,13 @@ body {
   align-items: center;
   gap: 12px;
   padding: 9px 0;
-  border-bottom: 1px solid var(--border-ticket);
+  border-bottom: 1px solid var(--border-row);
 }
 
 .ticket-item:last-child { border-bottom: none; }
 
-.ticket-id {
-  font-size: 11px;
-  color: var(--text-faint);
-  width: 56px;
-  flex-shrink: 0;
-  font-family: monospace;
-}
-
-.ticket-desc {
-  font-size: 13px;
-  color: var(--text-ticket);
-  flex: 1;
-}
+.ticket-id   { font-size: 11px; color: var(--text-faint); width: 56px; flex-shrink: 0; font-family: monospace; }
+.ticket-desc { font-size: 13px; color: var(--text-ticket); flex: 1; }
 
 .ticket-status {
   font-size: 10px;
@@ -609,14 +570,14 @@ body {
   gap: 14px;
 }
 
-/* ── PERFORMANCE STATS ── */
+/* ── PERFORMANCE ── */
 
 .stat-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 9px 0;
-  border-bottom: 1px solid var(--border-ticket);
+  border-bottom: 1px solid var(--border-row);
 }
 
 .stat-row:last-child { border-bottom: none; }
@@ -634,13 +595,13 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: var(--text-bar-meta);
+  color: var(--text-muted);
   margin-bottom: 5px;
 }
 
 .bar-track {
   height: 8px;
-  background: var(--bg-bar-track);
+  background: var(--bg-bar);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -655,24 +616,25 @@ body {
    ============================================================ */
 
 @media (max-width: 900px) {
-  .metrics-grid  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .widgets-row   { grid-template-columns: 1fr; }
-  .sidebar       { width: 64px; }
+  .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .widgets-row  { grid-template-columns: 1fr; }
+  .sidebar      { width: 64px; }
 
-  .sidebar-brand .brand-name,
-  .sidebar-brand .brand-sub,
+  .brand-name,
+  .brand-sub,
   .nav-section-label,
   .nav-item span:not(.nav-icon),
   .sidebar-user-name,
   .sidebar-user-role { display: none; }
 
-  .nav-item        { justify-content: center; padding: 14px; }
-  .sidebar-user    { justify-content: center; }
-  .logout-btn      { display: none; }
+  .nav-item     { justify-content: center; padding: 14px; }
+  .sidebar-user { justify-content: center; }
+  .logout-btn   { display: none; }
+  .toggle-label { display: none; }
 }
 
 @media (max-width: 480px) {
-  .topbar          { padding: 0.75rem 1rem; }
-  .content         { padding: 1rem; }
+  .topbar           { padding: 0.75rem 1rem; }
+  .content          { padding: 1rem; }
   .topbar-user-info { display: none; }
 }
