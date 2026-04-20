@@ -1,0 +1,77 @@
+/* ============================================================
+   variables.css — Design tokens (light + dark mode)
+   ============================================================ */
+
+:root {
+  /* Core palette */
+  --purple-900: #1a1040;
+  --purple-800: #26195a;
+  --purple-700: #3d2b8a;
+  --purple-600: #5340c0;
+  --purple-500: #6C63FF;
+  --purple-400: #8b84ff;
+  --purple-300: #b5b0ff;
+  --purple-100: #ede9ff;
+  --purple-50:  #f5f3ff;
+
+  --blue-600:  #2563eb;
+  --blue-500:  #3b82f6;
+  --blue-400:  #60a5fa;
+  --blue-100:  #dbeafe;
+
+  --green-500: #10b981;
+  --green-100: #d1fae5;
+  --amber-500: #f59e0b;
+  --amber-100: #fef3c7;
+  --red-500:   #ef4444;
+  --red-100:   #fee2e2;
+  --violet-500:#8b5cf6;
+  --violet-100:#ede9fe;
+
+  /* Light mode */
+  --bg-body:        #f0eeff;
+  --bg-card:        #ffffff;
+  --bg-input:       #f7f5ff;
+  --bg-sidebar:     #1a1040;
+  --bg-topbar:      #ffffff;
+  --bg-bar:         #ede9ff;
+  --bg-hover:       #f5f3ff;
+
+  --text-primary:   #111028;
+  --text-secondary: #4a4668;
+  --text-muted:     #8580a0;
+  --text-faint:     #c5c0dc;
+  --text-on-dark:   #ffffff;
+
+  --border:         #e8e4f8;
+  --border-input:   #d8d4f0;
+  --border-row:     #f0eeff;
+
+  --sidebar-text:   rgba(255,255,255,0.55);
+  --sidebar-muted:  rgba(255,255,255,0.35);
+  --sidebar-label:  rgba(255,255,255,0.25);
+  --sidebar-border: rgba(255,255,255,0.07);
+  --sidebar-hover:  rgba(255,255,255,0.06);
+  --sidebar-active: rgba(255,255,255,0.12);
+  --sidebar-name:   #ffffff;
+
+  --shadow-sm:   0 1px 3px rgba(108,99,255,.08);
+  --shadow-md:   0 4px 16px rgba(108,99,255,.12);
+  --shadow-lg:   0 8px 32px rgba(108,99,255,.18);
+  --shadow-card: 0 2px 12px rgba(108,99,255,.08);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  --transition: 0.22s cubic-bezier(.4,0,.2,1);
+  --transition-slow: 0.4s cubic-bezier(.4,0,.2,1);
+
+  --font-display: 'Outfit', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  --sidebar-w: 230px;
+  --topbar-h:  64px;
+}

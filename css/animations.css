@@ -1,0 +1,166 @@
+/* ============================================================
+   animations.css — Keyframes, transitions, micro-interactions
+   ============================================================ */
+
+/* ── PAGE LOAD ANIMATION ── */
+.animate-in {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Staggered children */
+.animate-in > * {
+  animation: fadeIn 0.5s ease both;
+}
+
+.animate-in > *:nth-child(1) { animation-delay: 0.05s; }
+.animate-in > *:nth-child(2) { animation-delay: 0.10s; }
+.animate-in > *:nth-child(3) { animation-delay: 0.15s; }
+.animate-in > *:nth-child(4) { animation-delay: 0.20s; }
+.animate-in > *:nth-child(5) { animation-delay: 0.25s; }
+.animate-in > *:nth-child(6) { animation-delay: 0.30s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── WAVE ANIMATION ── */
+.wave {
+  display: inline-block;
+  animation: wave 2.5s ease-in-out 0.5s both;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0%          { transform: rotate(0deg); }
+  10%         { transform: rotate(14deg); }
+  20%         { transform: rotate(-8deg); }
+  30%         { transform: rotate(14deg); }
+  40%         { transform: rotate(-4deg); }
+  50%         { transform: rotate(10deg); }
+  60%,100%    { transform: rotate(0deg); }
+}
+
+/* ── METRIC CARD ENTRANCE ── */
+.metrics-grid .metric-card {
+  animation: cardPop 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.metrics-grid .metric-card:nth-child(1) { animation-delay: 0.05s; }
+.metrics-grid .metric-card:nth-child(2) { animation-delay: 0.10s; }
+.metrics-grid .metric-card:nth-child(3) { animation-delay: 0.15s; }
+.metrics-grid .metric-card:nth-child(4) { animation-delay: 0.20s; }
+
+@keyframes cardPop {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── NAV ITEM HOVER ── */
+.nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04));
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.nav-item:hover::after { opacity: 1; }
+
+/* ── TABLE ROW HOVER ── */
+.data-table tbody tr td {
+  transition: background var(--transition);
+}
+
+/* ── SIDEBAR ITEM ACTIVE INDICATOR ── */
+.nav-item.active {
+  animation: sidebarActivePop 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+@keyframes sidebarActivePop {
+  from { transform: translateX(-4px); }
+  to   { transform: translateX(0); }
+}
+
+/* ── NOTIFICATION PULSE ── */
+.notif-dot {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ── CARD HOVER LIFT ── */
+.card {
+  transition: border-color var(--transition), box-shadow var(--transition),
+              background var(--transition), transform 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* ── LOGO BUTTON SPIN ON CLICK ── */
+.logo-btn:active .logo-mark {
+  animation: logoSpin 0.4s cubic-bezier(0.36,0.07,0.19,0.97);
+}
+
+@keyframes logoSpin {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(0.9); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ── PAGE TRANSITION ── */
+.page {
+  animation: pageFadeIn 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── THEME TOGGLE SPIN ── */
+.ctrl-btn:active {
+  animation: ctrlPop 0.2s ease;
+}
+
+@keyframes ctrlPop {
+  0%   { transform: scale(0.88); }
+  100% { transform: scale(1); }
+}
+
+/* ── SHIMMER LOADING (optional for future) ── */
+.shimmer {
+  background: linear-gradient(90deg,
+    var(--bg-bar) 25%,
+    var(--bg-hover) 50%,
+    var(--bg-bar) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ── AVATAR BUTTON ── */
+.avatar-btn {
+  transition: border-color var(--transition), box-shadow var(--transition),
+              transform 0.18s ease;
+}
+
+/* ── BADGE BOUNCE ── */
+.nav-badge {
+  transition: transform 0.15s ease, background var(--transition);
+}
+
+.nav-item:hover .nav-badge {
+  transform: scale(1.1);
+}
